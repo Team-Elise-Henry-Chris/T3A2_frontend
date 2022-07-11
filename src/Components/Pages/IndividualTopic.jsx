@@ -1,12 +1,11 @@
-import { useParams } from 'react-router-dom'
+import PostList from '../PostList'
+import React from 'react'
 
-const IndividualTopic = () => {
-    const { id } = useParams()
-
+const IndividualTopic = ({ posts }) => {
     return (
-        <div className="individual_topic">
-            <h2>Individual Topic Page - { id }</h2>
-        </div>
+        <>
+            <PostList posts={posts} />
+        </>
     )
 }
 
