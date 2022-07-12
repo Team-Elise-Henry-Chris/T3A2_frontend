@@ -4,7 +4,7 @@ import React from 'react'
 const Post = ({ post }) => {
     return (
         <div className="card bg-base-20 shadow-xl image-full m-4">
-            <div className="card-body items-center sm:items-left">
+            <div className="card-body items-center">
                 {/* Post Title */}
                 <h2 className="card-title">{post.title}</h2>
                 {/* Resource Type */}
@@ -52,6 +52,14 @@ const Post = ({ post }) => {
                 </div>
                 <h4>number of ratings</h4>
             </div>
+
+            <div className="flex justify-end z-10">
+                {/* Delete */}
+                <img className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png"></img>
+                {/* Edit  */}
+                {/* <img className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png"></img> */}
+            </div>
+
         </div>
     )
 }
