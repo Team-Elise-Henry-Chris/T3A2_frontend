@@ -2,12 +2,12 @@ import React from 'react'
 
 const Topic = ({ topic }) => {
     return (
-        <div class="card w-96 bg-base-100 shadow-xl image-full m-4">
+        <div className="card w-96 bg-base-100 shadow-xl image-full m-4">
             <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
-            <div class="card-body">
-                <h2 class="card-title">{topic.name}</h2>
-                <div class="card-actions justify-end">
-                    <button class="btn btn-primary">View Posts</button>
+            <div className="card-body">
+                <h2 className="card-title">{topic.name}</h2>
+                <div className="card-actions justify-end">
+                    <button className="btn btn-primary">View Posts</button>
                 </div>
             </div>
         </div>
