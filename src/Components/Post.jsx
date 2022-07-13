@@ -1,7 +1,24 @@
 import React from 'react'
 
 
+
+const postTitle = ({ post }) => {post.title}
+
+
+
+
 const Post = ({ post }) => {
+    // LINKS
+    //Post Title
+    const postTitle = () => post.title
+    //Post Link
+    const postLink = () => post.link
+    //Post Resource Type
+    const postResourceType = () => post.resource_type.type
+    // Post Date Created
+    const postDateCreated = () => post.date_created
+
+
     return (
         <div className="flex flex-row-reverse border-1 bg-sky-600 shadow-xl image-full m-4 rounded-lg">
             <div className="flex-row justify-end z-10">
@@ -12,7 +29,7 @@ const Post = ({ post }) => {
             </div>
             <div className="flex flex-col sm:flex-row items-center sm:items-left  w-full">
                     {/* Post Title */}
-                    <h2 className="card-title order-1 sm:order-2 sm:hidden">{post.title}</h2>
+                    <h2 className="card-title order-1 sm:order-2 sm:hidden">{postTitle()}</h2>
                     {/* Resource Type */}
                     <div className="order-2 sm:order-1 sm:w-1/6 md:w-1/6 p-3">
                     {(() => {
@@ -38,10 +55,10 @@ const Post = ({ post }) => {
                     </div>
 
                     {/* Resource Link */}
-                    <button className="btn btn-primary order-3 sm:hidden"><a href={post.link}>{post.resource_type.type} Link</a></button>
+                    <button className="btn btn-primary order-3 sm:hidden"><a href={postLink()}>{postResourceType()} Link</a></button>
 
                     {/* Date Created */}
-                    <h4 className="order-4 sm:hidden">{post.date_created}</h4>
+                    <h4 className="order-4 sm:hidden">{postDateCreated()}</h4>
                     {/* Star Rating */}
                     <div className="rating rating-lg rating-half order-5 sm:hidden">
                         <input type="radio" name="rating-10" class="rating-hidden" />
@@ -62,9 +79,9 @@ const Post = ({ post }) => {
                     {/* NON MOBILE DEVICES  */}
                     <div className="hidden sm:flex flex-col items-left text-left order-2 m-4 w-full gap-y-4">
                         {/* Post Title */}
-                        <h2 className="card-title">{post.title}</h2>
+                        <h2 className="card-title">{postTitle()}</h2>
                         {/* Resource Link */}
-                        <button className="btn btn-primary w-1/4"><a href={post.link}>{post.resource_type.type} Link</a></button>
+                        <button className="btn btn-primary w-1/4"><a href={postLink()}>{postResourceType()} Link</a></button>
                     </div>
                     <div className="hidden sm:flex flex-col items-right text-right order-3 w-full p-3 gap-y-4">
                         {/* Date Created */}
