@@ -14,7 +14,7 @@ const Post = ({ post }) => {
                     {/* Post Title */}
                     <h2 className="card-title order-1 sm:order-2 sm:hidden">{post.title}</h2>
                     {/* Resource Type */}
-                    <div className="order-2 sm:order-1 w-1/6">
+                    <div className="order-2 sm:order-1 sm:w-1/6 md:w-1/6 p-3">
                     {(() => {
                         switch (post.resource_type.type) {
                             case "Blog":
@@ -66,7 +66,7 @@ const Post = ({ post }) => {
                         {/* Resource Link */}
                         <button className="btn btn-primary w-1/4"><a href={post.link}>{post.resource_type.type} Link</a></button>
                     </div>
-                    <div className="hidden sm:flex flex-col items-right text-right order-3 w-full">
+                    <div className="hidden sm:flex flex-col items-right text-right order-3 w-full p-3">
                         {/* Date Created */}
                         <h4 className="">{post.date_created}</h4>
                         <div className="flex flex-row justify-end items-end">
