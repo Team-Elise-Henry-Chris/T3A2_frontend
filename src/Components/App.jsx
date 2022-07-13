@@ -34,7 +34,7 @@ const App = () => {
                     <Route path="/" element={<Home topics={topics} />} />
                     <Route path="/sign-in" element={<SignIn />} />
                     <Route path="/create-account" element={<CreateAccount />} />
-                    <Route path="/create-post" element={<CreatePost />} />
+                    <Route path="/create-post" element={<CreatePost topics={topics} />} />
                 </Routes>
             </BrowserRouter>
         </div>
