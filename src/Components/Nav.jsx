@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 const Nav = () => {
     return (
         <div className="p-3">
-            <div className="navbar bg-base-100 border rounded bg-slate-300">
+            <div className="navbar border rounded bg-slate-300">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex="0" className="btn btn-ghost lg:hidden">
@@ -23,7 +23,7 @@ const Nav = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <button className="btn">Sign In/Sign Up</button>
+                    <Link to="/sign-in" className="btn">Sign In</Link>
                 </div>
             </div>
         </div>
