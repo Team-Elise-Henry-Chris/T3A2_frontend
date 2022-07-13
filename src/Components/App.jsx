@@ -3,6 +3,7 @@ import Home from './Pages/Home'
 import Nav from './Nav'
 import CreateAccount from './Pages/CreateAccount'
 import SignIn from './Pages/SignIn'
+import CreatePost from './Pages/CreatePost'
 
 const topics = [
     { _id: '1', name: 'How to feed your elephant' },
@@ -33,6 +34,7 @@ const App = () => {
                     <Route path="/" element={<Home topics={topics} />} />
                     <Route path="/sign-in" element={<SignIn />} />
                     <Route path="/create-account" element={<CreateAccount />} />
+                    <Route path="/create-post" element={<CreatePost />} />
                 </Routes>
             </BrowserRouter>
         </div>
