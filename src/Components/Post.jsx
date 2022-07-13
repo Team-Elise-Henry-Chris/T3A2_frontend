@@ -60,13 +60,13 @@ const Post = ({ post }) => {
 
 
                     {/* NON MOBILE DEVICES  */}
-                    <div className="hidden sm:flex flex-col items-left text-left order-2 m-4 w-full">
+                    <div className="hidden sm:flex flex-col items-left text-left order-2 m-4 w-full gap-y-4">
                         {/* Post Title */}
                         <h2 className="card-title">{post.title}</h2>
                         {/* Resource Link */}
                         <button className="btn btn-primary w-1/4"><a href={post.link}>{post.resource_type.type} Link</a></button>
                     </div>
-                    <div className="hidden sm:flex flex-col items-right text-right order-3 w-full p-3">
+                    <div className="hidden sm:flex flex-col items-right text-right order-3 w-full p-3 gap-y-4">
                         {/* Date Created */}
                         <h4 className="">{post.date_created}</h4>
                         <div className="flex flex-row justify-end items-end">
