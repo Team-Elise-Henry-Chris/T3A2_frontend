@@ -16,7 +16,7 @@ const CreateAccount = () => {
     const handleSubmit = (event) => {
         event.preventDefault()
 
-        //   TODO: Axios call to backend
+        // TODO: Axios call to backend
     }
 
     return (
