@@ -1,4 +1,11 @@
 import React from 'react'
+import article from './icons/article.png'
+import blog from './icons/blog.png'
+import book from './icons/book.png'
+import course from './icons/course.png'
+import other from './icons/other.png'
+import podcast from './icons/podcast.png'
+import video from './icons/video.png'
 
 
 
@@ -35,21 +42,21 @@ const Post = ({ post }) => {
                     {(() => {
                         switch (post.resource_type.type) {
                             case "Blog":
-                                return <img className="object-scale-down h-20 w-20" src="https://cdn-icons-png.flaticon.com/512/1187/1187544.png"></img>
+                                return <img className="object-scale-down h-20 w-20" src={blog} ></img>
                             case "Video":
-                                return <img className="object-scale-down h-20 w-20" src="https://cdn-icons-png.flaticon.com/512/3074/3074767.png"></img>
+                                return <img className="object-scale-down h-20 w-20" src={video} ></img>
                             case "Article":
-                                return <img className="object-scale-down h-20 w-20" src="https://cdn-icons-png.flaticon.com/512/2680/2680919.png"></img>
+                                return <img className="object-scale-down h-20 w-20" src={article}></img>
                             case "Podcast":
-                                return <img className="object-scale-down h-20 w-20" src="https://cdn-icons-png.flaticon.com/512/3163/3163456.png"></img>
+                                return <img className="object-scale-down h-20 w-20" src={podcast}></img>
                             case "Book":
-                                return <img className="object-scale-down h-20 w-20" src="https://cdn-icons.flaticon.com/png/512/2702/premium/2702154.png?token=exp=1657599223~hmac=e41a44ab5ff3c3affac05f84dcb8b64d"></img>
+                                return <img className="object-scale-down h-20 w-20" src={book}></img>
                             case "Course":
-                                return <img className="object-scale-down h-20 w-20" src="https://cdn-icons.flaticon.com/png/512/2436/premium/2436874.png?token=exp=1657599267~hmac=bedb30625efed5ade2a4d7f3b8f143e7"></img>
+                                return <img className="object-scale-down h-20 w-20" src={course}></img>
                             case "Other":
-                                return <img className="object-scale-down h-20 w-20" src="https://cdn-icons.flaticon.com/png/512/3071/premium/3071733.png?token=exp=1657599588~hmac=0b6dd2fde364228b91a1eed2f0caf382"></img>
+                                return <img className="object-scale-down h-20 w-20" src={other}></img>
                             default:
-                                return <img className="object-scale-down h-20 w-20" src="https://cdn-icons.flaticon.com/png/512/3071/premium/3071733.png?token=exp=1657599588~hmac=0b6dd2fde364228b91a1eed2f0caf382"></img>
+                                return <img className="object-scale-down h-20 w-20" src={other}></img>
                         }
                     })()}
                     </div>
