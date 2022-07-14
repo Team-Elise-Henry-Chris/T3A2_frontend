@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 const CreatePost = ({ topics }) => {
 
@@ -10,18 +10,43 @@ const CreatePost = ({ topics }) => {
         topic: '',
     })
 
+    const { id } = useParams()
+
     const handleChange = (event) => {
         setNewPost({ ...newPost, [event.target.name]: event.target.value })
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log(newPost)
         // TODO: Axios call to backend
     }
 
+    const findTopicName = () => {
+        const foundTopic = topics.find((topic) => topic._id == id)
+        if (!foundTopic) { // ID not found
+            return renderTopicSelect()
+        }
+
+        return (
+            <h1>{foundTopic.name}</h1>
+        )
+    }
+
+    const renderTopicSelect = () => {
+        return (
+            <select className="select select-bordered w-full max-w-xs"
+                name="topic"
+                value={newPost.topic}
+                onChange={handleChange}
+            >
+                <option disabled value={''}>Select Post Topic</option>
+                {topics.map((topic, index) => <option key={index} value={topic._id}>{topic.name}</option>)}
+            </select>
+        )
+    }
+
     return (
-        <div className="relative flex flex-grow pb-3 pl-3 pr-3">
+        <div className="relative flex flex-grow p-3">
             <form onSubmit={handleSubmit} className="hero bg-base-200 border rounded ">
                 <div className="hero-content flex-col w-full">
                     <div className="text-center lg:text-left">
@@ -30,14 +55,12 @@ const CreatePost = ({ topics }) => {
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <div className="card-body">
 
-                            <select className="select select-bordered w-full max-w-xs"
-                                name="topic"
-                                value={newPost.topic}
-                                onChange={handleChange}
-                            >
-                                <option disabled value={''}>Select Post Topic</option>
-                                {topics.map((topic, index) => <option key={index} value={topic._id}>{topic.name}</option>)}
-                            </select>
+                            {id ? (
+                                findTopicName()
+                            ) : (
+                                renderTopicSelect()
+                            )}
+
 
                             <div className="form-control">
                                 <input
