@@ -2,6 +2,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './Pages/Home'
 import Nav from './Nav'
 import IndividualTopic from './Pages/IndividualTopic'
+import CreateAccount from './Pages/CreateAccount'
+import SignIn from './Pages/SignIn'
+import CreatePost from './Pages/CreatePost'
 
 const topics = [
     { _id: '1', name: 'How to feed your elephant' },
@@ -35,15 +38,18 @@ const posts = [
 const App = () => {
 
     return (
-        <BrowserRouter>
-            <div data-theme="bumblebee">
+        <div data-theme="bumblebee" className="min-h-screen flex flex-col">
+            <BrowserRouter>
                 <Nav />
                 <Routes>
                     <Route exact path="/" element={<Home topics={topics} />} />
                     <Route path="/topic/:id" element={<IndividualTopic posts={posts} />} />
+                    <Route path="/sign-in" element={<SignIn />} />
+                    <Route path="/create-account" element={<CreateAccount />} />
+                    <Route path="/create-post" element={<CreatePost topics={topics} />} />
                 </Routes>
-            </div>
-        </BrowserRouter>
+            </BrowserRouter>
+        </div>
     )
 
 }
