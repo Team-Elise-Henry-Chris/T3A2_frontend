@@ -19,7 +19,7 @@ const SignIn = () => {
 
 
     return (
-        <div className="relative flex flex-grow pb-3 pl-3 pr-3">
+        <div className="relative flex flex-grow p-3">
             <form onSubmit={handleSubmit} className="hero bg-base-200 border rounded ">
                 <div className="hero-content flex-col w-full">
                     <div className="text-center lg:text-left">
