@@ -36,7 +36,7 @@ const posts = [
 ]
 
 const App = () => {
-
+    
     return (
         <div data-theme="bumblebee" className="min-h-screen flex flex-col">
             <BrowserRouter>
