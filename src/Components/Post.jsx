@@ -67,18 +67,59 @@ const Post = ({ post }) => {
                     {/* Date Created */}
                     <h4 className="order-4 sm:hidden">{postDateCreated()}</h4>
                     {/* Star Rating */}
-                    <div className="rating rating-lg rating-half order-5 sm:hidden">
-                        <input type="radio" name="rating-10" class="rating-hidden" />
-                        <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
-                        <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
-                        <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-1" checked />
-                        <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
-                        <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
-                        <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
-                        <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
-                        <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
-                        <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
-                        <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
+                    <div className="rating rating-lg order-5 sm:hidden">
+                    {(() => {
+                        switch (post.rating) {
+                            case 1:
+                                return <>
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                       </>
+                            case 2:
+                                return <> 
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                       </>
+                            case 3:
+                                return <> 
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                       </>
+                            case 4:
+                                return <> 
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                        </>
+                            case 5:
+                                return <> 
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                       </>
+                            default:
+                                return <> 
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                        <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                       </>
+                                }
+                            })()}
                     </div>
                     <h4 className="order-6 sm:hidden">number of ratings</h4>
 
@@ -97,18 +138,60 @@ const Post = ({ post }) => {
                             {/* Number of ratings */}
                             <h4 className="">number of ratings</h4>
                             {/* Star Rating */}
-                            <div className="rating rating-lg rating-half">
-                                <input type="radio" name="rating-10" class="rating-hidden" />
-                                <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
-                                <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
-                                <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-1" checked />
-                                <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
-                                <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
-                                <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
-                                <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
-                                <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
-                                <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
-                                <input type="radio" name="rating-10" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
+                            <div class="rating rating-lg">
+                            {(() => {
+                                switch (post.rating) {
+                                    case 1:
+                                        return <>
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20"  />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                               </>
+                                    case 2:
+                                        return <> 
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500"  />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                               </>
+                                    case 3:
+                                        return <> 
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500"  />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                               </>
+                                    case 4:
+                                        return <> 
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500"  />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20" />
+                                               </>
+                                    case 5:
+                                        return <> 
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500" />
+                                               </>
+                                    default:
+                                        return <> 
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20"/>
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20"/>
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20"/>
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20"/>
+                                                <input type="radio" name="rating-8" class="mask mask-star-2 bg-yellow-500/20"/>
+                                               </>
+                                }
+                            })()}
+                                {post.rating}
                             </div>
                         </div>
                     </div>
