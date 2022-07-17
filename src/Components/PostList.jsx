@@ -1,12 +1,25 @@
+// import { useEffect } from 'react'
 import Post from './Post'
+import React, { useState } from "react"
 
-const PostList = ({ posts }) => {
+
+
+
+    const PostList = ({ posts }) => {
+        const [isToggled, setIsToggled] = useState(false)
+    
+        
+
     return (
         <>
-            <div className="flex flex-col justify-center">
-                {posts.map((post, index) => <Post key={index} post={post} />)}
+            <div>
+                <button class="btn btn-secondary" onClick={() => setIsToggled(!isToggled)} >Sort by Rating</button>
+                {isToggled ? posts.sort((a, b) => a.rating < b.rating ? 1 : -1).map((post, index) => <Post key={index} post={post} />) : posts.sort((a, b) => a.rating > b.rating ? 1 : -1).map((post, index) => <Post key={index} post={post} />)}
+               
             </div>
+
         </>
+
     )
 }
 
