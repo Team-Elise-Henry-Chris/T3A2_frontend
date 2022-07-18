@@ -5,25 +5,29 @@ import IndividualTopic from './Pages/IndividualTopic'
 import CreateAccount from './Pages/CreateAccount'
 import SignIn from './Pages/SignIn'
 import CreatePost from './Pages/CreatePost'
+import axios from 'axios'
 
-const topics = [
-    { _id: '1', name: 'How to feed your elephant' },
-    { _id: '2', name: 'Photography for beginners' },
-    { _id: '3', name: 'Gaming' },
-    { _id: '4', name: 'Psychology' },
-    { _id: '5', name: 'How to feed your elephant' },
-    { _id: '6', name: 'Photography for beginners' },
-    { _id: '7', name: 'Gaming' },
-    { _id: '8', name: 'Psychology' },
-    { _id: '9', name: 'How to feed your elephant' },
-    { _id: '10', name: 'Photography for beginners' },
-    { _id: '11', name: 'Gaming' },
-    { _id: '12', name: 'Psychology' },
-    { _id: '13', name: 'How to feed your elephant' },
-    { _id: '14', name: 'Photography for beginners' },
-    { _id: '15', name: 'Gaming' },
-    { _id: '16', name: 'Psychology' }
-]
+const baseURL = "http://localhost:4000/api/v1/topic"
+
+const topics = {topics}
+// const topics = [
+//     { _id: '1', name: 'How to feed your elephant' },
+//     { _id: '2', name: 'Photography for beginners' },
+//     { _id: '3', name: 'Gaming' },
+//     { _id: '4', name: 'Psychology' },
+//     { _id: '5', name: 'How to feed your elephant' },
+//     { _id: '6', name: 'Photography for beginners' },
+//     { _id: '7', name: 'Gaming' },
+//     { _id: '8', name: 'Psychology' },
+//     { _id: '9', name: 'How to feed your elephant' },
+//     { _id: '10', name: 'Photography for beginners' },
+//     { _id: '11', name: 'Gaming' },
+//     { _id: '12', name: 'Psychology' },
+//     { _id: '13', name: 'How to feed your elephant' },
+//     { _id: '14', name: 'Photography for beginners' },
+//     { _id: '15', name: 'Gaming' },
+//     { _id: '16', name: 'Psychology' }
+// ]
 
 const posts = [
     { _id: '1', title: 'How to prepare elephant food', link: 'https://www.youtube.com/watch?v=sHdK4i-NQjo', resource_type:{type: 'Video', enum:{values:['Video']} }, date_created: '2022-07-10', rating: 5},
@@ -36,6 +40,14 @@ const posts = [
 ]
 
 const App = () => {
+        
+    const [topic, setTopic] = React.useState(null)
+
+    React.useEffect(() => {
+        axios.get(baseURL).then((response) => {
+          setTopic(response.data);
+        });
+      }, [])
     
     return (
         <div data-theme="bumblebee" className="min-h-screen flex flex-col">
@@ -51,6 +63,8 @@ const App = () => {
                     </Routes>
                 </Nav>
             </BrowserRouter>
+
+            
         </div>
     )
 
