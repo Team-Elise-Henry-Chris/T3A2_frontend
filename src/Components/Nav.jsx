@@ -1,18 +1,23 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import AuthContext from './AuthProvider'
+import Alert from './Alert'
 
 const Nav = ({ children }) => {
     const [createPostLink, setCreatePostLink] = useState('/create-post')
+    const [showLogoutMsg, setShowLogoutMsg] = useState(false)
     const location = useLocation()
+
+    const { auth, setAuth } = useContext(AuthContext)
 
     // Listen for location to change
     useEffect(() => {
         // split pathname: '/topic/4' turns into: ['', 'topic', '4']
         const routes = location.pathname.split('/')
-        
+
         // deconstruct array: ['', 'topic', '4'] turns into { _: '', path: 'topic', id: '4'}
         const [_, path, id] = routes; // The _ is because we aren't using the first element in the routes array
-        
+
         if (routes.length === 3 && path === 'topic') { // e.g. url path: /topic/5
             setCreatePostLink(`/topic/${id}/create-post`)
         } else {
@@ -20,12 +25,18 @@ const Nav = ({ children }) => {
         }
     }, [location])
 
+    const handleLogout = () => {
+        window.localStorage.clear()
+        setAuth()
+    }
+
     const getNavLinks = () => {
         return (
             <>
                 <li><Link to="/">Home</Link></li>
-                <li><Link to={createPostLink}>Create Post</Link></li>
-                <li><Link to="/sign-in">Sign In</Link></li>
+                {auth ? <li><Link to={createPostLink}>Create Post</Link></li> : <li><Link to="/sign-in">Create Post</Link></li>}
+
+                {auth ? (<li><Link to="/" onClick={handleLogout}>Sign Out</Link></li>) : (<li><Link to="/sign-in">Sign In</Link></li>)}
             </>
         )
     }
@@ -53,7 +64,6 @@ const Nav = ({ children }) => {
                         </ul>
                     </div>
                 </div>
-
                 {/* children relates to the content between the start and end tag of the Nav component in App.jsx */}
                 {children}
 

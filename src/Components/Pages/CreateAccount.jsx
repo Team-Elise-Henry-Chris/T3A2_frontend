@@ -1,25 +1,50 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from '../../api/axios'
+import Alert from '../Alert'
+
+const CREATE_ACCOUNT_URL = '/api/v1/user'
 
 const CreateAccount = () => {
+    const userRef = useRef()
+    const nav = useNavigate()
+
+
     const [accountInfo, setAccountInfo] = useState({
         firstName: '',
         lastName: '',
         email: '',
+        username: '',
         password: '',
         confirmPassword: '',
     })
+
+    const [showError, setShowError] = useState(false)
 
     const handleChange = (event) => {
         setAccountInfo({ ...accountInfo, [event.target.name]: event.target.value })
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
 
-        // TODO: Axios call to backend
+        try {
+            await axios.post(CREATE_ACCOUNT_URL, accountInfo)
+            setAccountInfo({ firstName: '', lastName: '', email: '', username: '', password: '', confirmPassword: '' })
+
+            nav('/sign-in')
+        } catch (err) {
+            setShowError(true)
+        }
     }
 
+    useEffect(() => {
+        userRef.current.focus()
+    }, [])
+
     return (
+        // TODO: Create form validation 
+    
         <div className="relative flex flex-grow p-3">
             <form onSubmit={handleSubmit} className="hero bg-base-200 border rounded">
                 <div className="hero-content flex-col w-full">
@@ -29,11 +54,14 @@ const CreateAccount = () => {
 
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <div className="card-body">
+                            {/* {showError && <Alert status="error" message="Invalid email or password" />} */}
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">First Name</span>
                                 </label>
-                                <input type="text"
+                                <input
+                                    ref={userRef}
+                                    type="text"
                                     placeholder="John"
                                     className="input input-bordered"
                                     name="firstName"
@@ -64,6 +92,19 @@ const CreateAccount = () => {
                                     className="input input-bordered"
                                     name="email"
                                     value={accountInfo.email}
+                                    onChange={handleChange}
+                                />
+                            </div>
+
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Username</span>
+                                </label>
+                                <input type="text"
+                                    placeholder="JSmith45"
+                                    className="input input-bordered"
+                                    name="username"
+                                    value={accountInfo.username}
                                     onChange={handleChange}
                                 />
                             </div>
