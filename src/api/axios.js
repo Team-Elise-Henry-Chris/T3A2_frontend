@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-const endpoint = import.meta.env.API_ENDPOINT || process.env.API_ENDPOINT
-
 export default axios.create({
-    baseURL: endpoint || 'http://localhost:4000'
+    baseURL: import.meta.env.VITE_API_ENDPOINT || 'http://localhost:4000'
 })
