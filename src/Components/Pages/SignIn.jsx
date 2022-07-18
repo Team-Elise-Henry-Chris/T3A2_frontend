@@ -18,8 +18,6 @@ const SignIn = () => {
 
     const [showError, setShowError] = useState(false)
 
-    // TODO: Handle setting Auth
-
     const handleChange = (event) => {
         setSignInInfo({ ...signInInfo, [event.target.name]: event.target.value })
     }
@@ -29,7 +27,6 @@ const SignIn = () => {
 
         try {
             const response = await axios.put(LOGIN_URL, signInInfo)
-            console.log(response)
             setSignInInfo({ email: '', password: '' })
             const accessToken = response.data?.accessToken
             const role = response.data?.role
@@ -47,10 +44,6 @@ const SignIn = () => {
     useEffect(() => {
         userRef.current.focus()
     }, [])
-
-    useEffect(() => {
-    }, [signInInfo.email, signInInfo.password])
-
 
     return (
         <>

@@ -15,8 +15,6 @@ export const AuthProvider = ({ children }) => {
                 setAuth(JSON.parse(data))
             }
         }
-
-        console.log('AuthProvider fired');
     }, [auth])
 
     return (
