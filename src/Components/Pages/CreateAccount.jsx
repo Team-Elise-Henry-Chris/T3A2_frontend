@@ -7,6 +7,8 @@ const CREATE_ACCOUNT_URL = '/api/v1/user'
 
 const CreateAccount = () => {
     const userRef = useRef()
+    const pwdRef = useRef()
+    const confirmPwdRef = useRef()
     const nav = useNavigate()
 
 
@@ -19,14 +21,21 @@ const CreateAccount = () => {
         confirmPassword: '',
     })
 
-    const [showError, setShowError] = useState(false)
+    const [errorMsg, setErrorMsg] = useState('')
+    const [pwdErrorMsg, setPwdErrorMsg] = useState([])
+    const [showPwdError, setShowPwdError] = useState(false)
 
     const handleChange = (event) => {
+        if (event.target.name === 'password' || event.target.name === 'confirmPassword') {
+            setShowPwdError(true)
+        }
+
         setAccountInfo({ ...accountInfo, [event.target.name]: event.target.value })
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+        setErrorMsg('')
 
         try {
             await axios.post(CREATE_ACCOUNT_URL, accountInfo)
@@ -34,17 +43,39 @@ const CreateAccount = () => {
 
             nav('/sign-in')
         } catch (err) {
-            setShowError(true)
+
+            if (err.response.data.includes('dup key: { username')) {
+                setErrorMsg('Username is already in use')
+            } else if (err.response.data.includes('dup key: { email')) {
+                setErrorMsg('Email is already in use')
+            }
+            console.log(err)
         }
     }
+
+    useEffect(() => {
+        if (!showPwdError) {
+            return
+        }
+
+        const messages = []
+
+        if (pwdRef.current.value.length < 8) {
+            messages.push('Minimum password length is 8 characters')
+        } else if (pwdRef.current.value !== confirmPwdRef.current.value) {
+            messages.push('Passwords must match')
+        }
+
+        setPwdErrorMsg(messages)
+
+    }, [pwdRef.current?.value, confirmPwdRef.current?.value])
 
     useEffect(() => {
         userRef.current.focus()
     }, [])
 
     return (
-        // TODO: Create form validation 
-    
+        
         <div className="relative flex flex-grow p-3">
             <form onSubmit={handleSubmit} className="hero bg-base-200 border rounded">
                 <div className="hero-content flex-col w-full">
@@ -54,7 +85,7 @@ const CreateAccount = () => {
 
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <div className="card-body">
-                            {/* {showError && <Alert status="error" message="Invalid email or password" />} */}
+                            {errorMsg && <Alert status="error" message={errorMsg} />}
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">First Name</span>
@@ -114,10 +145,12 @@ const CreateAccount = () => {
                             </div>
 
                             <div className="form-control">
+                                {pwdErrorMsg.length > 0 && <Alert status="error" message={pwdErrorMsg} />}
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
                                 <input type="password"
+                                    ref={pwdRef}
                                     placeholder="Password"
                                     className="input input-bordered"
                                     name="password"
@@ -132,6 +165,7 @@ const CreateAccount = () => {
                                     <span className="label-text">Confirm Password</span>
                                 </label>
                                 <input type="password"
+                                    ref={confirmPwdRef}
                                     placeholder="Confirm Password"
                                     className="input input-bordered"
                                     name="confirmPassword"
@@ -142,7 +176,7 @@ const CreateAccount = () => {
                             </div>
 
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Create Account</button>
+                                <button className="btn btn-primary" disabled={pwdErrorMsg.length !== 0 || pwdRef.current?.value === ''}>Create Account</button>
                             </div>
                         </div>
                     </div>
