@@ -67,6 +67,7 @@ const CreateAccount = () => {
                                     name="firstName"
                                     value={accountInfo.firstName}
                                     onChange={handleChange}
+                                    required
                                 />
                             </div>
 
@@ -80,6 +81,7 @@ const CreateAccount = () => {
                                     name="lastName"
                                     value={accountInfo.lastName}
                                     onChange={handleChange}
+                                    required
                                 />
                             </div>
 
@@ -93,6 +95,7 @@ const CreateAccount = () => {
                                     name="email"
                                     value={accountInfo.email}
                                     onChange={handleChange}
+                                    required
                                 />
                             </div>
 
@@ -106,6 +109,7 @@ const CreateAccount = () => {
                                     name="username"
                                     value={accountInfo.username}
                                     onChange={handleChange}
+                                    required
                                 />
                             </div>
 
@@ -119,6 +123,7 @@ const CreateAccount = () => {
                                     name="password"
                                     value={accountInfo.password}
                                     onChange={handleChange}
+                                    required
                                 />
                             </div>
 
@@ -132,6 +137,7 @@ const CreateAccount = () => {
                                     name="confirmPassword"
                                     value={accountInfo.confirmPassword}
                                     onChange={handleChange}
+                                    required
                                 />
                             </div>
 
