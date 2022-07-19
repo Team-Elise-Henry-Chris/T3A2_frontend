@@ -33,6 +33,7 @@ const Nav = ({ children }) => {
     const getNavLinks = () => {
         return (
             <>
+                {auth?.role === 'admin' && <li><Link to="/admin">Admin Dashboard</Link></li>}
                 <li><Link to="/">Home</Link></li>
                 {auth ? <li><Link to={createPostLink}>Create Post</Link></li> : <li><Link to="/sign-in">Create Post</Link></li>}
 
