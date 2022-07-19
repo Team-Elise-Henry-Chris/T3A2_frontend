@@ -7,7 +7,7 @@ const Topic = ({ topic }) => {
             <div className="card-body">
                 <h2 className="card-title">{topic.topic_name}</h2>
                 <div className="card-actions justify-end">
-                    <button className="btn btn-primary"><Link to={`/topic/${topic._id}`}>View Posts</Link></button>
+                    <button className="btn btn-primary"><Link to={`/topic/${topic.topic_name}`}>View Posts</Link></button>
                 </div>
             </div>
         </div>
