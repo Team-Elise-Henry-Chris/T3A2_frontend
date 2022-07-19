@@ -13,7 +13,7 @@ import React, { useState } from "react"
     return (
         <>
             <div>
-                <button class="btn btn-secondary" onClick={() => setIsToggled(!isToggled)} >Sort by Rating</button>
+                <button className="btn btn-secondary" onClick={() => setIsToggled(!isToggled)} >Sort by Rating</button>
                 {isToggled ? posts.sort((a, b) => a.rating < b.rating ? 1 : -1).map((post, index) => <Post key={index} post={post} />) : posts.sort((a, b) => a.rating > b.rating ? 1 : -1).map((post, index) => <Post key={index} post={post} />)}
                
             </div>

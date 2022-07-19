@@ -28,7 +28,7 @@ const CreatePost = ({ topics }) => {
         }
 
         return (
-            <h1>{foundTopic.name}</h1>
+            <h1>{foundTopic.topic_name}</h1>
         )
     }
 
@@ -40,7 +40,7 @@ const CreatePost = ({ topics }) => {
                 onChange={handleChange}
             >
                 <option disabled value={''}>Select Post Topic</option>
-                {topics.map((topic, index) => <option key={index} value={topic._id}>{topic.name}</option>)}
+                {topics.map((topic, index) => <option key={index} value={topic._id}>{topic.topic_name}</option>)}
             </select>
         )
     }
