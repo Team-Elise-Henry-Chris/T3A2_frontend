@@ -9,10 +9,6 @@ import video from './icons/video.png'
 
 
 
-const postTitle = ({ post }) => {post.title}
-
-
-
 
 const Post = ({ post }) => {
     // LINKS
@@ -30,9 +26,16 @@ const Post = ({ post }) => {
         <div className="flex flex-row-reverse border-1 bg-sky-600 shadow-xl image-full m-4 rounded-lg">
             <div className="flex-row justify-end z-10">
             {/* Delete */}
-            <img className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png"></img>
+            {window.localStorage.getItem('data') === null ? null : window.localStorage.getItem('data').includes(post.user.email) ? <img className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png"></img> : null}
+            {/* post.user.email will be replaced with correct route to user.email */}
+           
+            
+            
             {/* Edit  */}
-            <img className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png"></img>
+            {window.localStorage.getItem('data') === null ? null : window.localStorage.getItem('data').includes(post.user.email) ? <img className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png"></img> : null}
+            {/* post.user.email will be replaced with correct route to user.email */}
+            
+            
             </div>
             <div className="flex flex-col sm:flex-row items-center sm:items-left  w-full">
                     {/* Post Title */}
@@ -191,7 +194,7 @@ const Post = ({ post }) => {
                                                </>
                                 }
                             })()}
-                                {post.rating}
+                       
                             </div>
                         </div>
                     </div>
