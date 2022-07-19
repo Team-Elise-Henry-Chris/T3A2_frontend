@@ -187,7 +187,7 @@ const Post = ({ post }) => {
                                                </>
                                 }
                             })()}
-                                {post.rating}
+                       
                             </div>
                         </div>
                     </div>
