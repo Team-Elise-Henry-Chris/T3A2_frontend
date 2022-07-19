@@ -9,10 +9,6 @@ import video from './icons/video.png'
 
 
 
-const postTitle = ({ post }) => {post.title}
-
-
-
 
 const Post = ({ post }) => {
     // LINKS
