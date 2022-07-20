@@ -17,7 +17,7 @@ const Post = ({ post }) => {
     //Post Link
     const postLink = () => post.link
     //Post Resource Type
-    const postResourceType = () => post.resource_type.type
+    const postResourceType = () => post.resource_type
     // Post Date Created
     const postDateCreated = () => post.date_created
 
@@ -25,16 +25,17 @@ const Post = ({ post }) => {
     return (
         <div className="flex flex-row-reverse border-1 bg-sky-600 shadow-xl image-full m-4 rounded-lg">
             <div className="flex-row justify-end z-10">
+            
             {/* Delete */}
             {window.localStorage.getItem('data') === null ? null : window.localStorage.getItem('data').includes(post.user.email) ? <img className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png"></img> : null}
             {/* post.user.email will be replaced with correct route to user.email */}
-           
+            {/* THIS NEEDS TO BE UPDATED ONCE HENRY ADDS USERID IN THE ACCESSTOKEN */}
             
             
             {/* Edit  */}
             {window.localStorage.getItem('data') === null ? null : window.localStorage.getItem('data').includes(post.user.email) ? <img className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png"></img> : null}
             {/* post.user.email will be replaced with correct route to user.email */}
-            
+            {/* THIS NEEDS TO BE UPDATED ONCE HENRY ADDS USERID IN THE ACCESSTOKEN */}
             
             </div>
             <div className="flex flex-col sm:flex-row items-center sm:items-left  w-full">
@@ -43,7 +44,7 @@ const Post = ({ post }) => {
                     {/* Resource Type */}
                     <div className="order-2 sm:order-1 sm:w-1/6 md:w-1/6 p-3">
                     {(() => {
-                        switch (post.resource_type.type) {
+                        switch (postResourceType()) {
                             case "Blog":
                                 return <img className="object-scale-down h-20 w-20" src={blog} ></img>
                             case "Video":
@@ -72,7 +73,7 @@ const Post = ({ post }) => {
                     {/* Star Rating */}
                     <div className="rating rating-lg order-5 sm:hidden">
                     {(() => {
-                        switch (post.rating) {
+                        switch ((post.ratings.reduce((a,v) =>  a = a + v.rating_num , 0 ))/post.ratings.length) {
                             case 1:
                                 return <>
                                         <input type="radio" name="rating-8" className="mask mask-star-2 bg-yellow-500" />
@@ -136,14 +137,14 @@ const Post = ({ post }) => {
                     </div>
                     <div className="hidden sm:flex flex-col items-right text-right order-3 w-full p-3 gap-y-4">
                         {/* Date Created */}
-                        <h4 className="">{post.date_created}</h4>
+                        <h4 className="">{postDateCreated()}</h4>
                         <div className="flex flex-row justify-end items-end">
                             {/* Number of ratings */}
                             <h4 className="">number of ratings</h4>
                             {/* Star Rating */}
                             <div className="rating rating-lg">
                             {(() => {
-                                switch (post.rating) {
+                                switch ((post.ratings.reduce((a,v) =>  a = a + v.rating_num , 0 ))/post.ratings.length) {
                                     case 1:
                                         return <>
                                                 <input type="radio" name="rating-8" className="mask mask-star-2 bg-yellow-500" />
@@ -194,7 +195,7 @@ const Post = ({ post }) => {
                                                </>
                                 }
                             })()}
-                       
+
                             </div>
                         </div>
                     </div>
