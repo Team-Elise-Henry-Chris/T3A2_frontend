@@ -1,10 +1,19 @@
+
+import axios from '../../api/axios'
+
+
 const AdminDashboard = ({ topics }) => {
 
-    const handleEdit = () => {
-
+    const handleEdit = async () => {
+        
     }
 
-    const handleDelete = () => {
+    const handleDelete = async (topic) => {
+        
+        await axios.delete(`/api/v1/topic/${topic._id}`)
+    }
+
+    const handleCreateTopic = () => {
 
     }
 
@@ -32,7 +41,7 @@ const AdminDashboard = ({ topics }) => {
                                     <button className="btn btn-warning">Edit</button>
                                 </td>
                                 <td>
-                                    <button className="btn btn-error">Delete</button>
+                                    <button className="btn btn-error" onClick={() => handleDelete(topic)}>Delete</button>
                                 </td>
                             </tr>
                         ))}
