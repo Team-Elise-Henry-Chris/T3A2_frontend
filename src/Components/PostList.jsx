@@ -16,7 +16,6 @@ import React, { useState } from "react"
                 <button className="btn btn-secondary" onClick={() => setIsToggled(!isToggled)} >Sort by Rating</button>
                 {isToggled ? posts.filter(posts => `/topic/${posts.topic}` === window.location.pathname).sort((a, b) => a.rating < b.rating ? 1 : -1).map((post, index) => <Post key={index} post={post} />) : posts.filter(posts => `/topic/${posts.topic}` === window.location.pathname).sort((a, b) => a.rating > b.rating ? 1 : -1).map((post, index) => <Post key={index} post={post} />)}
             </div>
-            {window.location.pathname}
 
         </>
 
