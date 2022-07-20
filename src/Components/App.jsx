@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Home from './Pages/Home'
 import Nav from './Nav'
 import IndividualTopic from './Pages/IndividualTopic'
@@ -61,12 +61,13 @@ const App = () => {
                         <Route path="/create-account" element={<CreateAccount />} />
                         <Route path="/create-post" element={<CreatePost topics={topics} />} />
                         
-                        {auth?.role === 'admin' && <Route path="/admin" element={<AdminDashboard topics={topics} />} />}
+                        {auth?.role === 'admin' && <Route path="/admin" element={<AdminDashboard topics={topics} setTopics={setTopics} />} />}
+
+                        {/* Route not found - redirects to home page */}
+                        <Route path="*" element={<Navigate to="/" />} />
                     </Routes>
                 </Nav>
-            </BrowserRouter>
-
-            
+            </BrowserRouter>           
         </div>
     )
 
