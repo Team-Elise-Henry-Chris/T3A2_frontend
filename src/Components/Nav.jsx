@@ -5,7 +5,6 @@ import Alert from './Alert'
 
 const Nav = ({ children }) => {
     const [createPostLink, setCreatePostLink] = useState('/create-post')
-    const [showLogoutMsg, setShowLogoutMsg] = useState(false)
     const location = useLocation()
 
     const { auth, setAuth } = useContext(AuthContext)
@@ -27,12 +26,13 @@ const Nav = ({ children }) => {
 
     const handleLogout = () => {
         window.localStorage.clear()
-        setAuth()
+        setAuth(undefined)
     }
 
     const getNavLinks = () => {
         return (
             <>
+                {auth?.role === 'admin' && <li><Link to="/admin">Admin Dashboard</Link></li>}
                 <li><Link to="/">Home</Link></li>
                 {auth ? <li><Link to={createPostLink}>Create Post</Link></li> : <li><Link to="/sign-in">Create Post</Link></li>}
 

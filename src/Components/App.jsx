@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './Pages/Home'
 import Nav from './Nav'
@@ -8,6 +8,7 @@ import SignIn from './Pages/SignIn'
 import CreatePost from './Pages/CreatePost'
 import AuthContext from './AuthProvider'
 import axios from './../api/axios'
+import AdminDashboard from './Pages/AdminDashboard'
 
 
 const posts = [
@@ -25,8 +26,7 @@ const posts = [
 ]
 
 const App = () => {
-    // Will need for putting auth on routes eg for admin
-    // const { auth } = useContext(AuthContext)
+    const { auth } = useContext(AuthContext)
 
     const [topics, setTopics] = useState([])
 
@@ -50,6 +50,8 @@ const App = () => {
                         <Route path="/sign-in" element={<SignIn />} />
                         <Route path="/create-account" element={<CreateAccount />} />
                         <Route path="/create-post" element={<CreatePost topics={topics} />} />
+                        
+                        {auth?.role === 'admin' && <Route path="/admin" element={<AdminDashboard topics={topics} />} />}
                     </Routes>
                 </Nav>
             </BrowserRouter>
