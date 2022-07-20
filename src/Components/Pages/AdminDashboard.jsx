@@ -6,9 +6,9 @@ const AdminDashboard = ({ topics, setTopics }) => {
     const newTopicName = useRef()
 
 
-    const handleEdit = async () => {
-
-    }
+    // const handleEdit = async () => {
+        // Function ready for logic to edit a topic
+    // }
 
     const handleDelete = async (id) => {
         setTopics(topics.filter((topic) => topic._id !== id))
