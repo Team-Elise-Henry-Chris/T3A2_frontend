@@ -6,7 +6,7 @@ import course from './icons/course.png'
 import other from './icons/other.png'
 import podcast from './icons/podcast.png'
 import video from './icons/video.png'
-
+import moment from 'moment'
 
 
 
@@ -19,7 +19,7 @@ const Post = ({ post }) => {
     //Post Resource Type
     const postResourceType = () => post.resource_type
     // Post Date Created
-    const postDateCreated = () => post.date_created
+    const postDateCreated = () => moment(post.date_created).format('Do MMMM YYYY')
 
 
     return (
