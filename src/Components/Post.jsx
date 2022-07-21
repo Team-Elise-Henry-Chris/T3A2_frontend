@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import article from './icons/article.png'
 import blog from './icons/blog.png'
 import book from './icons/book.png'
@@ -159,7 +159,7 @@ const Post = ({ post }) => {
                         <div className="order-7 sm:hidden dropdown dropdown-end">
                             <label tabindex="0" class="btn m-1">Add Star Rating</label>
                                 <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                                    <li><a><StarRating /></a></li>
+                                    <li><a><StarRating post={post}/></a></li>
                                 </ul>
                         </div>
 
@@ -183,7 +183,7 @@ const Post = ({ post }) => {
                         <div className="dropdown dropdown-end hidden sm:flex justify-end">
                             <label tabindex="0" class="btn m-1">Add Star Rating</label>
                             <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                                <li><a><StarRating /></a></li>
+                            <li><a><StarRating post={post} /></a></li>
                             </ul>
                         </div>
                         <div className="flex flex-row justify-end items-end">

@@ -1,18 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { FaStar } from 'react-icons/fa'
 import './App.css'
+import jwt_decode from 'jwt-decode'
+import axios from './../api/axios'
 
-const StarRating = () => {
+
+
+const StarRating = ({ post }) => {
+
     const [rating, setRating] = useState(null)
     const [hover, setHover] = useState(null)
 
+
+    var token = JSON.parse(window.localStorage.getItem('data'))?.accessToken
+    var decoded = jwt_decode(token)
+
     const createStarHandler = () => {
-  
+
         const headers = { 
             'Authorization': `Bearer ${token}`
         }
 
-        axios.post(`/api/v1/rating/${post._id}`)
+        const ratingDetails = { rating: rating, postId:`${post._id}`/*, user: `${decoded.id}`*/}
+
+        axios.post(`/api/v1/rating/`, ratingDetails)
             .then(response => {
                 (console.log(response.data))
                 (window.location.reload(false))
@@ -22,7 +33,7 @@ const StarRating = () => {
             })
     }
 
-    return <div lassName="flex flex-col">
+    return <div className="flex flex-col">
         <div className="flex flex-row">
         {[ ... Array(5)].map((star, i) => {
             const ratingValue = i + 1
