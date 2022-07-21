@@ -1,9 +1,9 @@
 import TopicList from '../TopicList'
-// import jwt_decode from 'jwt-decode'
+import jwt_decode from 'jwt-decode'
 
 const Home = ({ topics }) => {
     // var token = JSON.parse(window.localStorage.getItem('data'))?.accessToken
-    // var decoded = jwt_decode(token)
+    // var decoded = jwt_decogit addde(token)
 
     return (
         <>
