@@ -21,7 +21,7 @@ const StarRating = ({ post }) => {
             'Authorization': `Bearer ${token}`
         }
 
-        const ratingDetails = { rating: rating, postId:`${post._id}`/*, user: `${decoded.id}`*/}
+        const ratingDetails = { rating: rating, postId:`${post._id}`}
 
         axios.post(`/api/v1/rating/`, ratingDetails)
             .then(response => {
