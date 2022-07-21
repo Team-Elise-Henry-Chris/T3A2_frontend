@@ -5,16 +5,18 @@ import React, { useState } from "react"
 
 
 
+
+
     const PostList = ({ posts }) => {
         const [isToggled, setIsToggled] = useState(false)
-    
+        
         
 
     return (
         <>
             <div>
-                <button className="btn btn-secondary" onClick={() => setIsToggled(!isToggled)} >Sort by Rating</button>
-                {isToggled ? posts.filter(posts => `/topic/${posts.topic_name}` === window.location.pathname.replace(/%20/g, " ")).sort((a, b) => a.rating < b.rating ? 1 : -1).map((post, index) => <Post key={index} post={post} />) : posts.filter(posts => `/topic/${posts.topic_name}` === window.location.pathname.replace(/%20/g, " ")).sort((a, b) => a.rating > b.rating ? 1 : -1).map((post, index) => <Post key={index} post={post} />)}
+                <button className="btn btn-secondary" onClick={() => setIsToggled(!isToggled)} >Sort by Date</button>
+                {isToggled ? posts.filter(posts => `/topic/${posts.topic}` === window.location.pathname).sort((a, b) => a.date_created < b.date_created ? 1 : -1).map((post, index) => <Post key={index} post={post} />) : posts.filter(posts => `/topic/${posts.topic}` === window.location.pathname).sort((a, b) => a.date_created > b.date_created ? 1 : -1).map((post, index) => <Post key={index} post={post} />)}
             </div>
 
         </>
