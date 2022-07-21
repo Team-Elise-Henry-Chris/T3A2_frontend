@@ -56,7 +56,7 @@ const App = () => {
                     <Routes>
                         <Route exact path="/" element={<Home topics={topics} />} />
                         <Route path="/topic/:id" element={<IndividualTopic posts={posts} />} />
-                        <Route path="/topic/:id/create-post" element={<CreatePost topics={topics} />} />
+                        <Route path="/topic/:id/create-post" element={<CreatePost topics={topics} setPosts={setPosts} posts={posts} />} />
                         <Route path="/sign-in" element={<SignIn />} />
                         <Route path="/create-account" element={<CreateAccount />} />
                         <Route path="/create-post" element={<CreatePost topics={topics} />} />

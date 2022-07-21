@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-const CreatePost = ({ topics }) => {
+const CreatePost = ({ topics, setPosts, posts }) => {
     const nav = useNavigate()
 
     const [newPost, setNewPost] = useState({
@@ -28,7 +28,8 @@ const CreatePost = ({ topics }) => {
         }
 
         try {
-            await axios.post('/api/v1/post', post)
+            const response = await axios.post('/api/v1/post', post)
+            setPosts([...posts, response.data])
             nav(`/topic/${newPost.topic}`)
         } catch (err) {
             // TODO: Handle errors
