@@ -9,9 +9,9 @@ const EditPost = ({ post }) => {
     var token = JSON.parse(window.localStorage.getItem('data'))?.accessToken
     var decoded = jwt_decode(token)
 
-    const [editPostTitle, setEditPostTitle] = useState('')
-    const [editPostResourceType, setEditPostResourceType] = useState('')
-    const [editPostLink, setEditPostLink] = useState('')
+    const [editPostTitle, setEditPostTitle] = useState(`${post.title}`)
+    const [editPostResourceType, setEditPostResourceType] = useState(`${post.resource_type}`)
+    const [editPostLink, setEditPostLink] = useState(`${post.link}`)
 
     const handleSubmit = (e) => {
         e.preventDefault()

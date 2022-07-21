@@ -64,7 +64,7 @@ const Post = ({ post }) => {
         
             {/* Edit  */}
             {decoded.id === null ? null : decoded.id.includes(post.user) ? 
-            <div className="dropdown dropdown-left dropdown-end sm:flex justify-end">
+            <div className="dropdown dropdown-end sm:flex justify-end">
             <label tabindex="0" class="btn m-1 bg-sky-600 h-10 w-12.1"><img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png" onClick=''></img></label>
             <ul tabindex="0" class="dropdown-content menu p-2 shadow base-content rounded-box w-52">
             <li><a><EditPost post={post}/></a></li>
