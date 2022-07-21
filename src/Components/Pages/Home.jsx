@@ -9,7 +9,7 @@ const Home = ({ topics }) => {
     return (
         <>
             <TopicList topics={topics} />
-            {/* <h4>{window.localStorage.getItem('data')}</h4> */}
+            <h4>{window.localStorage.getItem('data')}</h4>
 
         </>
     )

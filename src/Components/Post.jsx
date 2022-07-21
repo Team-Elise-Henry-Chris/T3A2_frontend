@@ -7,6 +7,7 @@ import other from './icons/other.png'
 import podcast from './icons/podcast.png'
 import video from './icons/video.png'
 import moment from 'moment'
+import StarRating from './StarRating'
 
 
 
@@ -23,6 +24,7 @@ const Post = ({ post }) => {
 
 
     return (
+        
         <div className="flex flex-row-reverse border-1 bg-sky-600 shadow-xl image-full m-4 rounded-lg">
             <div className="flex-row justify-end z-10">
             
@@ -38,6 +40,7 @@ const Post = ({ post }) => {
             {/* THIS NEEDS TO BE UPDATED ONCE HENRY ADDS USERID IN THE ACCESSTOKEN */}
             
             </div>
+            
             <div className="flex flex-col sm:flex-row items-center sm:items-left  w-full">
                     {/* Post Title */}
                     <h2 className="card-title order-1 sm:order-2 sm:hidden">{postTitle()}</h2>
@@ -73,7 +76,7 @@ const Post = ({ post }) => {
                     {/* Star Rating */}
                     <div className="rating rating-lg order-5 sm:hidden">
                     {(() => {
-                        switch ((post.ratings.reduce((a,v) =>  a = a + v.rating_num , 0 ))/post.ratings.length) {
+                        switch (Math.round((post.ratings.reduce((a,v) =>  a = a + v.rating_num , 0 ))/post.ratings.length) || Math.round((post.ratings.reduce((a,v) =>  a = a + v.rating , 0 ))/post.ratings.length)) {
                             case 1:
                                 return <>
                                         <input type="radio" name="rating-8" className="mask mask-star-2 bg-yellow-500" />
@@ -124,6 +127,7 @@ const Post = ({ post }) => {
                                        </>
                                 }
                             })()}
+                            
                     </div>
                     <h4 className="order-6 sm:hidden">number of ratings</h4>
 
@@ -135,16 +139,29 @@ const Post = ({ post }) => {
                         {/* Resource Link */}
                         <button className="btn btn-primary w-1/4"><a href={postLink()}>{postResourceType()} Link</a></button>
                     </div>
+
+
+
+
                     <div className="hidden sm:flex flex-col items-right text-right order-3 w-full p-3 gap-y-4">
                         {/* Date Created */}
                         <h4 className="">{postDateCreated()}</h4>
                         <div className="flex flex-row justify-end items-end">
                             {/* Number of ratings */}
                             <h4 className="">number of ratings</h4>
-                            {/* Star Rating */}
+
+                            {/* Star Rating - FROM USER INPUT*/}
+                            {/* <div className="rating rating-lg">
+                            <input type="radio" name="rating-8" className="mask mask-star-2 bg-yellow-500" />
+                            </div> */}
+                            <div><h4>" ADD STAR RATING"</h4></div>
+                                <StarRating />
+                            <div><h4>" ADD STAR RATING"</h4></div>
+                            
+                            {/* Star Rating - FROM DATABASE*/}
                             <div className="rating rating-lg">
-                            {(() => {
-                                switch ((post.ratings.reduce((a,v) =>  a = a + v.rating_num , 0 ))/post.ratings.length) {
+                            {(() =>  {
+                                switch (Math.round((post.ratings.reduce((a,v) =>  a = a + v.rating_num , 0 ))/post.ratings.length) || Math.round((post.ratings.reduce((a,v) =>  a = a + v.rating , 0 ))/post.ratings.length)) {
                                     case 1:
                                         return <>
                                                 <input type="radio" name="rating-8" className="mask mask-star-2 bg-yellow-500" />
@@ -194,6 +211,7 @@ const Post = ({ post }) => {
                                                 <input type="radio" name="rating-8" className="mask mask-star-2 bg-yellow-500/20"/>
                                                </>
                                 }
+                                
                             })()}
 
                             </div>
