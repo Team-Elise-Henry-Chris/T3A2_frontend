@@ -1,0 +1,13 @@
+input[id="ratingbutton"] {
+        display: none;
+    }
+
+.star {
+    cursor: pointer;
+    transition: color 200ms;
+}
+
+img[id="edit_delete"]{
+    cursor: pointer;
+    transition: color 200ms;
+}
