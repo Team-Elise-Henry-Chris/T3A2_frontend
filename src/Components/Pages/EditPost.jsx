@@ -83,9 +83,6 @@ const EditPost = ({ post }) => {
 
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary" onClick=''>Submit</button>
-                                <p>{editPostTitle}</p>
-                                <p>{editPostLink}</p>
-                                <p>{editPostResourceType}</p>
                             </div>
                         </div>
                     </div>
