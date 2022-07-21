@@ -1,7 +1,9 @@
+import axios from 'axios'
 import { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const CreatePost = ({ topics }) => {
+    const nav = useNavigate()
 
     const [newPost, setNewPost] = useState({
         title: '',
@@ -16,9 +18,20 @@ const CreatePost = ({ topics }) => {
         setNewPost({ ...newPost, [event.target.name]: event.target.value })
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        // TODO: Axios call to backend
+
+        if (!newPost.topic) {
+            setNewPost({ ...newPost, topic: id})
+        }
+
+        try {
+            await axios.post('/api/v1/post', newPost)
+
+            nav(`/topic/${newPost.topic}`)
+        } catch (err) {
+            // TODO: Handle errors
+        }
     }
 
     const findTopicName = () => {
@@ -38,6 +51,7 @@ const CreatePost = ({ topics }) => {
                 name="topic"
                 value={newPost.topic}
                 onChange={handleChange}
+                required
             >
                 <option disabled value={''}>Select Post Topic</option>
                 {topics.map((topic, index) => <option key={index} value={topic._id}>{topic.topic_name}</option>)}
@@ -70,6 +84,7 @@ const CreatePost = ({ topics }) => {
                                     name="title"
                                     value={newPost.title}
                                     onChange={handleChange}
+                                    required
                                 />
                             </div>
 
@@ -81,6 +96,7 @@ const CreatePost = ({ topics }) => {
                                     name="link"
                                     value={newPost.link}
                                     onChange={handleChange}
+                                    required
                                 />
                             </div>
 
@@ -88,6 +104,7 @@ const CreatePost = ({ topics }) => {
                                 name="resource_type"
                                 value={newPost.resource_type}
                                 onChange={handleChange}
+                                required
                             >
                                 <option disabled value={''}>Select Post Type</option>
                                 <option>Blog</option>

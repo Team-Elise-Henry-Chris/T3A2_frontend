@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import AuthContext from '../AuthProvider'
 import axios from '../../api/axios'
 import Alert from '../Alert'
+import jwt_decode from 'jwt-decode'
 
 const LOGIN_URL = '/api/v1/user'
 
@@ -27,13 +28,12 @@ const SignIn = () => {
 
         try {
             const response = await axios.put(LOGIN_URL, signInInfo)
-            setSignInInfo({ email: '', password: '' })
+
             const accessToken = response.data?.accessToken
-            const role = response.data?.role
-            setAuth({ email: signInInfo.email, role, accessToken })
+            const decoded = jwt_decode(accessToken)
 
+            setAuth({ email: signInInfo.email, id: decoded.id, role: decoded.role, accessToken })
             nav('/')
-
         } catch (err) {
             setShowError(true)
             setSignInInfo({ ...signInInfo, password: '' })
