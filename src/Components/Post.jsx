@@ -41,31 +41,11 @@ const Post = ({ post }) => {
                 (console.log(response.data))
                 (window.location.reload(false))
             })
-            // .then(window.location.reload(true))
             .catch(error => error => {
                 setGoal({error: true})
             })
     }
 
-    // useEffect(() => {
-
-    //     const headers = { 
-    //         'Authorization': `Bearer ${token}`
-    //     };
-    //     axios.delete(`/api/v1/post/${id}`, { headers })
-    //         .then(() => setStatus('Delete successful'));
-    // }, [])
-
-    // const [posts, setPosts] = useState([])
-    
-    // const deletePost = (id) => {
-    //     client.delete(`${id}`);
-    //     setPosts(
-    //        posts.filter((post) => {
-    //           return post.id !== id
-    //        })
-    //     )
-    //  }
 
 
     return (
