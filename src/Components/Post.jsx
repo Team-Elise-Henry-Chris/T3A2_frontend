@@ -8,6 +8,7 @@ import podcast from './icons/podcast.png'
 import video from './icons/video.png'
 import moment from 'moment'
 import StarRating from './StarRating'
+import jwt_decode from 'jwt-decode'
 
 
 
@@ -22,20 +23,25 @@ const Post = ({ post }) => {
     // Post Date Created
     const postDateCreated = () => moment(post.date_created).format('Do MMMM YYYY')
 
+    var token = JSON.parse(window.localStorage.getItem('data'))?.accessToken
+    var decoded = jwt_decode(token)
+
 
     return (
+        
         
         <div className="flex flex-row-reverse border-1 bg-sky-600 shadow-xl image-full m-4 rounded-lg">
             <div className="flex-row justify-end z-10">
             
             {/* Delete */}
-            {window.localStorage.getItem('data') === null ? null : window.localStorage.getItem('data').includes(post.user.email) ? <img className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png"></img> : null}
+            {decoded.id === null ? null : decoded.id.includes(post.user) ? <img className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png"></img> : null}
             {/* post.user.email will be replaced with correct route to user.email */}
             {/* THIS NEEDS TO BE UPDATED ONCE HENRY ADDS USERID IN THE ACCESSTOKEN */}
             
             
+            
             {/* Edit  */}
-            {window.localStorage.getItem('data') === null ? null : window.localStorage.getItem('data').includes(post.user.email) ? <img className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png"></img> : null}
+            {decoded.id === null ? null : decoded.id.includes(post.user) ? <img className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png"></img> : null}
             {/* post.user.email will be replaced with correct route to user.email */}
             {/* THIS NEEDS TO BE UPDATED ONCE HENRY ADDS USERID IN THE ACCESSTOKEN */}
             
