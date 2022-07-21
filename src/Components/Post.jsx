@@ -173,15 +173,15 @@ const Post = ({ post }) => {
                     {/* Star Rating - USER ADDED*/}
                         <div>{decoded.role === "admin" ? 
                         <div className="order-7 sm:hidden dropdown dropdown-end">
-                            <label tabindex="0" class="btn m-1">Add Star Rating</label>
-                                <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <label tabindex="0" class="btn m-1 bg-blue-700">Add Star Rating</label>
+                                <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
                                     <li><a><StarRating post={post}/> </a></li>
                                 </ul>
                         </div>
                          : decoded.id === post.user ? null: 
                         <div className="order-7 sm:hidden dropdown dropdown-end">
-                            <label tabindex="0" class="btn m-1">Add Star Rating</label>
-                                <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <label tabindex="0" class="btn m-1 bg-blue-700">Add Star Rating</label>
+                                <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
                                     <li><a><StarRating post={post}/> </a></li>
                                 </ul>
                         </div>
@@ -207,15 +207,15 @@ const Post = ({ post }) => {
                         {/* Star Rating - USER ADDED*/}
                         <div>{decoded.role === "admin" ?
                         <div className="dropdown dropdown-end hidden sm:flex justify-end">
-                            <label tabindex="0" class="btn m-1">Add Star Rating</label>
-                            <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <label tabindex="0" class="btn m-1 bg-blue-700">Add Star Rating</label>
+                            <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
                             <li><a><StarRating post={post} /></a></li>
                             </ul>
                         </div>
                         : decoded.id === post.user ? null:
                         <div className="dropdown dropdown-end hidden sm:flex justify-end">
-                            <label tabindex="0" class="btn m-1">Add Star Rating</label>
-                            <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                            <label tabindex="0" class="btn m-1 bg-blue-700">Add Star Rating</label>
+                            <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
                             <li><a><StarRating post={post} /></a></li>
                             </ul>
                         </div>
