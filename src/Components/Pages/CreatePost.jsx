@@ -20,14 +20,15 @@ const CreatePost = ({ topics }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+        const post = newPost
 
-        if (!newPost.topic) {
-            setNewPost({ ...newPost, topic: id})
+        if (!post.topic) {
+            post.topic = id
+            setNewPost(post)
         }
 
         try {
-            await axios.post('/api/v1/post', newPost)
-
+            await axios.post('/api/v1/post', post)
             nav(`/topic/${newPost.topic}`)
         } catch (err) {
             // TODO: Handle errors
