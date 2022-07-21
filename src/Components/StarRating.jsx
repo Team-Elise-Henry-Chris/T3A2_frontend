@@ -29,7 +29,7 @@ const StarRating = () => {
             </label>
             )
         })}
-        <p>The Rating is {rating}.</p>
+        <p>{rating} Stars.</p>
     </div>
 }
 

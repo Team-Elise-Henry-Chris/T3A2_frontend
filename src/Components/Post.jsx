@@ -130,6 +130,14 @@ const Post = ({ post }) => {
                             
                     </div>
                     <h4 className="order-6 sm:hidden">number of ratings</h4>
+                    
+                    {/* Star Rating - USER ADDED*/}
+                        <div className="order-7 sm:hidden dropdown dropdown-end">
+                            <label tabindex="0" class="btn m-1">Add Star Rating</label>
+                                <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                                    <li><a><StarRating /></a></li>
+                                </ul>
+                        </div>
 
 
                     {/* NON MOBILE DEVICES  */}
@@ -142,21 +150,21 @@ const Post = ({ post }) => {
 
 
 
-
+                                
                     <div className="hidden sm:flex flex-col items-right text-right order-3 w-full p-3 gap-y-4">
                         {/* Date Created */}
                         <h4 className="">{postDateCreated()}</h4>
+
+                        {/* Star Rating - USER ADDED*/}
+                        <div className="dropdown dropdown-end hidden sm:flex justify-end">
+                            <label tabindex="0" class="btn m-1">Add Star Rating</label>
+                            <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                                <li><a><StarRating /></a></li>
+                            </ul>
+                        </div>
                         <div className="flex flex-row justify-end items-end">
                             {/* Number of ratings */}
                             <h4 className="">number of ratings</h4>
-
-                            {/* Star Rating - FROM USER INPUT*/}
-                            {/* <div className="rating rating-lg">
-                            <input type="radio" name="rating-8" className="mask mask-star-2 bg-yellow-500" />
-                            </div> */}
-                            <div><h4>" ADD STAR RATING"</h4></div>
-                                <StarRating />
-                            <div><h4>" ADD STAR RATING"</h4></div>
                             
                             {/* Star Rating - FROM DATABASE*/}
                             <div className="rating rating-lg">
