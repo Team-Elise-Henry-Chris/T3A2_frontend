@@ -32,6 +32,7 @@ const AdminDashboard = ({ topics, setTopics }) => {
 
     return (
         <>
+            <h1>Admin Dashboard</h1>
             <div className="overflow-x-auto shadow-md sm:rounded-lg max-w-4xl m-5">
                 <table className="table table-zebra w-full">
                     <thead>
