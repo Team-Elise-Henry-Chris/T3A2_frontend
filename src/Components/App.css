@@ -6,3 +6,8 @@ input[id="ratingbutton"] {
     cursor: pointer;
     transition: color 200ms;
 }
+
+img[id="edit_delete"]{
+    cursor: pointer;
+    transition: color 200ms;
+}

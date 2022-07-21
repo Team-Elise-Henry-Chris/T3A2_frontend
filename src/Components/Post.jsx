@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import article from './icons/article.png'
 import blog from './icons/blog.png'
 import book from './icons/book.png'
@@ -9,6 +9,9 @@ import video from './icons/video.png'
 import moment from 'moment'
 import StarRating from './StarRating'
 import jwt_decode from 'jwt-decode'
+import axios from './../api/axios'
+import './App.css'
+
 
 
 
@@ -27,6 +30,44 @@ const Post = ({ post }) => {
     var decoded = jwt_decode(token)
 
 
+    const deletePostHandler = () => {
+  
+        const headers = { 
+            'Authorization': `Bearer ${token}`
+        }
+
+        axios.delete(`/api/v1/post/${post._id}`)
+            .then(response => {
+                (console.log(response.data))
+                (window.location.reload(false))
+            })
+            // .then(window.location.reload(true))
+            .catch(error => error => {
+                setGoal({error: true})
+            })
+    }
+
+    // useEffect(() => {
+
+    //     const headers = { 
+    //         'Authorization': `Bearer ${token}`
+    //     };
+    //     axios.delete(`/api/v1/post/${id}`, { headers })
+    //         .then(() => setStatus('Delete successful'));
+    // }, [])
+
+    // const [posts, setPosts] = useState([])
+    
+    // const deletePost = (id) => {
+    //     client.delete(`${id}`);
+    //     setPosts(
+    //        posts.filter((post) => {
+    //           return post.id !== id
+    //        })
+    //     )
+    //  }
+
+
     return (
         
         
@@ -34,16 +75,13 @@ const Post = ({ post }) => {
             <div className="flex-row justify-end z-10">
             
             {/* Delete */}
-            {decoded.id === null ? null : decoded.id.includes(post.user) ? <img className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png"></img> : null}
-            {/* post.user.email will be replaced with correct route to user.email */}
-            {/* THIS NEEDS TO BE UPDATED ONCE HENRY ADDS USERID IN THE ACCESSTOKEN */}
+            {decoded.id === null ? null : decoded.id.includes(post.user) ? <img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" onClick={deletePostHandler}></img> : null}
+   
             
-            
-            
+        
             {/* Edit  */}
-            {decoded.id === null ? null : decoded.id.includes(post.user) ? <img className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png"></img> : null}
-            {/* post.user.email will be replaced with correct route to user.email */}
-            {/* THIS NEEDS TO BE UPDATED ONCE HENRY ADDS USERID IN THE ACCESSTOKEN */}
+            {decoded.id === null ? null : decoded.id.includes(post.user) ? <img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png"></img> : null}
+
             
             </div>
             
