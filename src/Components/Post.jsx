@@ -26,7 +26,7 @@ const Post = ({ post }) => {
     //Post Resource Type
     const postResourceType = () => post.resource_type
     // Post Date Created
-    const postDateCreated = () => moment(post.date_created).format('Do MMMM YYYY')
+    const postDateCreated = () => moment(post.date_created).format('[Created,] Do MMMM YYYY [(]h:mm a[)]')
 
     var token = JSON.parse(window.localStorage.getItem('data'))?.accessToken
     var decoded = jwt_decode(token)
