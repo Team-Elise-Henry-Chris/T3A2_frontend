@@ -29,7 +29,7 @@ const StarRating = ({ post }) => {
                 (window.location.reload(false))
             })
             .catch(error => error => {
-                setGoal({error: true})
+                setPost({error: true})
             })
     }
 
