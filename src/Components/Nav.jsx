@@ -15,7 +15,7 @@ const Nav = ({ children }) => {
         const routes = location.pathname.split('/')
 
         // deconstruct array: ['', 'topic', '4'] turns into { _: '', path: 'topic', id: '4'}
-        const [_, path, id] = routes; // The _ is because we aren't using the first element in the routes array
+        const [_, path, id] = routes // The _ is because we aren't using the first element in the routes array
 
         if (routes.length === 3 && path === 'topic') { // e.g. url path: /topic/5
             setCreatePostLink(`/topic/${id}/create-post`)
