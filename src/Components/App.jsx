@@ -45,7 +45,7 @@ const App = () => {
                         <Route path="/topic/:id/create-post" element={<CreatePost topics={topics} setPosts={setPosts} posts={posts} />} />
                         <Route path="/sign-in" element={<SignIn />} />
                         <Route path="/create-account" element={<CreateAccount />} />
-                        <Route path="/create-post" element={<CreatePost topics={topics} />} />
+                        <Route path="/create-post" element={<CreatePost topics={topics} setPosts={setPosts} posts={posts} />} />
                         
                         {auth?.role === 'admin' && <Route path="/admin" element={<AdminDashboard topics={topics} setTopics={setTopics} />} />}
 
