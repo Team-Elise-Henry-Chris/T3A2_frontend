@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useContext } from 'react'
 import article from './icons/article.png'
 import blog from './icons/blog.png'
 import book from './icons/book.png'
@@ -8,17 +8,14 @@ import podcast from './icons/podcast.png'
 import video from './icons/video.png'
 import moment from 'moment'
 import StarRating from './StarRating'
-import jwt_decode from 'jwt-decode'
 import axios from './../api/axios'
 import './App.css'
-import { Link } from 'react-router-dom'
 import EditPost from './Pages/EditPost'
-
-
-
+import AuthContext from './AuthProvider'
 
 const Post = ({ post }) => {
     // LINKS
+    const { auth } = useContext(AuthContext)
     //Post Title
     const postTitle = () => post.title
     //Post Link
@@ -28,26 +25,15 @@ const Post = ({ post }) => {
     // Post Date Created
     const postDateCreated = () => moment(post.date_created).format('[Created,] Do MMMM YYYY [(]h:mm a[)]')
 
-    var token = JSON.parse(window.localStorage.getItem('data'))?.accessToken
-    var decoded = jwt_decode(token)
-
 // DELETE POSTS 
-    const deletePostHandler = () => {
-  
-        const headers = { 
-            'Authorization': `Bearer ${token}`
+    const deletePostHandler = async () => {
+        try {
+            await axios.delete(`/api/v1/post/${post._id}`)
+            window.location.reload(false)
+        } catch (err) {
+            console.error('Error: ' + err)
         }
-
-        axios.delete(`/api/v1/post/${post._id}`)
-            .then(response => {
-                (console.log(response.data))
-                (window.location.reload(false))
-            })
-            .catch(error => error => {
-                setPost({error: true})
-            })
     }
-
 
     return (
         
@@ -56,21 +42,21 @@ const Post = ({ post }) => {
             <div className="flex-row justify-end z-10">
             
             {/* Delete */}
-            {decoded.id === null ? null : decoded.id.includes(post.user) ? 
+            {auth?.id === null ? null : auth?.id.includes(post.user) ? 
             <label tabIndex="0" className="btn m-1 bg-sky-600 h-10 w-19"><img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" onClick={deletePostHandler}></img></label> : 
-            decoded.role === "admin" ? <label tabIndex="0" className="btn m-1 bg-sky-600 h-10 w-19"><img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" onClick={deletePostHandler}></img></label> : null}
+            auth?.role === "admin" ? <label tabIndex="0" className="btn m-1 bg-sky-600 h-10 w-19"><img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" onClick={deletePostHandler}></img></label> : null}
    
             
         
             {/* Edit  */}
-            {decoded.id === null ? null : decoded.id.includes(post.user) ? 
+            {auth?.id === null ? null : auth?.id.includes(post.user) ? 
             <div className="dropdown dropdown-end sm:flex justify-end">
             <label tabIndex="0" className="btn m-1 bg-sky-600 h-10 w-12.1"><img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png" onClick=''></img></label>
             <ul tabIndex="0" className="dropdown-content menu p-2 shadow base-content rounded-box w-52">
             <li><a><EditPost post={post}/></a></li>
             </ul>
             </div> : 
-            decoded.role === "admin" ? 
+            auth?.role === "admin" ? 
             <div className="dropdown dropdown-end sm:flex justify-end">
             <label tabIndex="0" className="btn m-1 bg-sky-600 h-10 w-12.1"><img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png" onClick=''></img></label>
             <ul tabIndex="0" className="dropdown-content menu p-2 shadow base-content rounded-box w-52">
@@ -171,14 +157,14 @@ const Post = ({ post }) => {
                     <h4 className="order-6 sm:hidden">number of ratings</h4>
                     
                     {/* Star Rating - USER ADDED*/}
-                        <div>{decoded.role === "admin" ? 
+                        <div>{auth?.role === "admin" ? 
                         <div className="order-7 sm:hidden dropdown dropdown-end">
                             <label tabIndex="0" className="btn m-1 bg-blue-700">Add Star Rating</label>
                                 <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
                                     <li><a><StarRating post={post}/> </a></li>
                                 </ul>
                         </div>
-                         : decoded.id === post.user ? null: 
+                         : auth?.id === post.user ? null: 
                         <div className="order-7 sm:hidden dropdown dropdown-end">
                             <label tabIndex="0" className="btn m-1 bg-blue-700">Add Star Rating</label>
                                 <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
@@ -205,14 +191,14 @@ const Post = ({ post }) => {
                         <h4 className="">{postDateCreated()}</h4>
 
                         {/* Star Rating - USER ADDED*/}
-                        <div>{decoded.role === "admin" ?
+                        <div>{auth?.role === "admin" ?
                         <div className="dropdown dropdown-end hidden sm:flex justify-end">
                             <label tabIndex="0" className="btn m-1 bg-blue-700">Add Star Rating</label>
                             <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
                             <li><a><StarRating post={post} /></a></li>
                             </ul>
                         </div>
-                        : decoded.id === post.user ? null:
+                        : auth?.id === post.user ? null:
                         <div className="dropdown dropdown-end hidden sm:flex justify-end">
                             <label tabIndex="0" className="btn m-1 bg-blue-700">Add Star Rating</label>
                             <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
