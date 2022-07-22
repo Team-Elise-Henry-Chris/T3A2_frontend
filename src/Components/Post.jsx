@@ -13,7 +13,7 @@ import './App.css'
 import EditPost from './Pages/EditPost'
 import AuthContext from './AuthProvider'
 
-const Post = ({ post }) => {
+const Post = ({ post, posts, setPosts, getPosts }) => {
     // LINKS
     const { auth } = useContext(AuthContext)
     //Post Title
@@ -29,7 +29,7 @@ const Post = ({ post }) => {
     const deletePostHandler = async () => {
         try {
             await axios.delete(`/api/v1/post/${post._id}`)
-            window.location.reload(false)
+            setPosts(posts.filter((p) => p._id !== post._id))
         } catch (err) {
             console.error('Error: ' + err)
         }
@@ -51,16 +51,16 @@ const Post = ({ post }) => {
             {/* Edit  */}
             {auth?.id === null ? null : auth?.id.includes(post.user) ? 
             <div className="dropdown dropdown-end sm:flex justify-end">
-            <label tabIndex="0" className="btn m-1 bg-sky-600 h-10 w-12.1"><img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png" onClick=''></img></label>
+            <label tabIndex="0" className="btn m-1 bg-sky-600 h-10 w-12.1"><img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png"></img></label>
             <ul tabIndex="0" className="dropdown-content menu p-2 shadow base-content rounded-box w-52">
-            <li><a><EditPost post={post}/></a></li>
+            <li><a><EditPost post={post} posts={posts} setPosts={setPosts} /></a></li>
             </ul>
             </div> : 
             auth?.role === "admin" ? 
             <div className="dropdown dropdown-end sm:flex justify-end">
-            <label tabIndex="0" className="btn m-1 bg-sky-600 h-10 w-12.1"><img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png" onClick=''></img></label>
+            <label tabIndex="0" className="btn m-1 bg-sky-600 h-10 w-12.1"><img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png"></img></label>
             <ul tabIndex="0" className="dropdown-content menu p-2 shadow base-content rounded-box w-52">
-            <li><a><EditPost post={post}/></a></li>
+            <li><a><EditPost post={post} posts={posts} setPosts={setPosts} /></a></li>
             </ul>
             </div> : null}
             
@@ -161,14 +161,14 @@ const Post = ({ post }) => {
                         <div className="order-7 sm:hidden dropdown dropdown-end">
                             <label tabIndex="0" className="btn m-1 bg-blue-700">Add Star Rating</label>
                                 <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
-                                    <li><a><StarRating post={post}/> </a></li>
+                                    <li><a><StarRating post={post} getPosts={getPosts} /> </a></li>
                                 </ul>
                         </div>
                          : auth?.id === post.user ? null: 
                         <div className="order-7 sm:hidden dropdown dropdown-end">
                             <label tabIndex="0" className="btn m-1 bg-blue-700">Add Star Rating</label>
                                 <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
-                                    <li><a><StarRating post={post}/> </a></li>
+                                    <li><a><StarRating post={post} getPosts={getPosts} /> </a></li>
                                 </ul>
                         </div>
                          }
@@ -195,14 +195,14 @@ const Post = ({ post }) => {
                         <div className="dropdown dropdown-end hidden sm:flex justify-end">
                             <label tabIndex="0" className="btn m-1 bg-blue-700">Add Star Rating</label>
                             <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
-                            <li><a><StarRating post={post} /></a></li>
+                            <li><a><StarRating post={post} getPosts={getPosts} /></a></li>
                             </ul>
                         </div>
                         : auth?.id === post.user ? null:
                         <div className="dropdown dropdown-end hidden sm:flex justify-end">
                             <label tabIndex="0" className="btn m-1 bg-blue-700">Add Star Rating</label>
                             <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
-                            <li><a><StarRating post={post} /></a></li>
+                            <li><a><StarRating post={post} getPosts={getPosts} /></a></li>
                             </ul>
                         </div>
                         }</div>

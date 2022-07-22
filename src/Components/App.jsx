@@ -26,13 +26,16 @@ const App = () => {
         getTopics()
     },[])
 
+    const getPosts = async () => {
+        const response = await axios.get('/api/v1/post')
+        setPosts(response.data)
+    }
+
     useEffect(() => {
-        const getPosts = async () => {
-            const response = await axios.get('/api/v1/post')
-            setPosts(response.data)
-        }
-        
-        getPosts()
+        // IIFE (Immediately Invoked Function Expression) - https://stackoverflow.com/questions/63570597/typeerror-func-apply-is-not-a-function
+        (async () => {
+            await getPosts()
+        })()
     },[])
 
     return (
@@ -41,7 +44,7 @@ const App = () => {
                 <Nav>
                     <Routes>
                         <Route exact path="/" element={<Home topics={topics} />} />
-                        <Route path="/topic/:id" element={<IndividualTopic posts={posts} />} />
+                        <Route path="/topic/:id" element={<IndividualTopic posts={posts} setPosts={setPosts} getPosts={getPosts} />} />
                         <Route path="/topic/:id/create-post" element={<CreatePost topics={topics} setPosts={setPosts} posts={posts} />} />
                         <Route path="/sign-in" element={<SignIn />} />
                         <Route path="/create-account" element={<CreateAccount />} />
