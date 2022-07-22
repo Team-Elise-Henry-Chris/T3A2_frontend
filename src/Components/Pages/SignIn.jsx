@@ -33,11 +33,12 @@ const SignIn = () => {
 
         try {
             const response = await axios.put(LOGIN_URL, signInInfo)
-
             const accessToken = response.data?.accessToken
-            const decoded = jwt_decode(accessToken)
 
-            setAuth({ email: signInInfo.email, id: decoded.id, role: decoded.role, accessToken })
+            if (accessToken) {
+                const decoded = jwt_decode(accessToken)
+                setAuth({ email: signInInfo.email, id: decoded.id, role: decoded.role, accessToken })
+            }
             nav('/')
         } catch (err) {
             setShowError(true)
