@@ -7,6 +7,7 @@ Chris, Elise, Henry
 ### Links to deployed websites
 
 Front-End: <br>
+http://www.teachyoself.co/
 https://teachyoself-web.herokuapp.com/
 
 Back-End <br>
@@ -170,6 +171,15 @@ Additional commentary on design choices, functions and actions has been describe
 
 **Wireframe Overview/Project Flow**  
 ![Overview](./docs/wireframe-overview.png)
+
+---
+### Project Management Methodology
+
+Implemented Agile project management methodology in combination with scrum.  The team worked off our strengths and weaknesses from the start, and we allocated coding tasks based on this knowledge. This resulted in Elise and Chris focusing on the front-end of the application, whilst Henry focused on the back-end works.  
+
+As part of the scrum methodology we carried out daily standups with educators as scrum masters, assisting with any issues that we might have.  The team did daily catch ups via video and telephone conference to allocate daily work and update on previous day's progress.  This also allowed the team members to raise any concerns with what they were doing.  The team also utilised Trello boards for general and project planning.  Tickets identify the size and priority using different colors.  Each ticket also contains the team member carrying out the task, as well as linking it to commits/merges/pull requests from GitHub.  GitHub pull requests were generally reviewed by another team member to allow for error checking and conflict resolution.  
+
+
 
 ---
 ### Trello and Planning 
@@ -428,7 +438,39 @@ Additional commentary on design choices, functions and actions has been describe
 ---
 
 ### User Testing
-(INCOMPLETE)
+
+#### Development
+
+![Development Testing 1](./docs/usertest1.png)
+
+![Development Testing 2](./docs/usertest2.png)
+
+![Development Testing 3](./docs/usertest3.png)
+
+![Development Testing 4](./docs/usertest4.png)
+
+![Development Testing 5](./docs/usertest5.png)
+
+![Development Testing 6](./docs/usertest6.png)
+
+![Development Testing 7](./docs/usertest7.png)
+
+--- 
+
+#### Production
+
+![Production Testing 1](./docs/usertest1a.png)
+
+![Production Testing 2](./docs/usertest2a.png)
+
+![Production Testing 3](./docs/usertest3a.png)
+
+![Production Testing 4](./docs/usertest4a.png)
+
+![Production Testing 5](./docs/usertest5a.png)
+
+![Production Testing 6](./docs/usertest6a.png)
+
 
 ---
 
@@ -452,6 +494,30 @@ Additional commentary on design choices, functions and actions has been describe
   - Used to access star icons for star rating feature of the app.
 - "react-router-dom": "^6.3.0"
   - Used for setting up dynamic routing in the front-end.
+
+**Back-End:**
+- "bcrypt": "^5.0.1",
+  - Hashing algorithm used to encrypt user passwords
+- "cookie-parser": "^1.4.6",
+  - Middleware parser for cookies - enables express to access refresh tokens stored in cookies, allowing a new access token to be granted
+- "cors": "^2.8.5",
+  - Middleware used to enable cross origin resource sharing from the back end to front end
+- "dotenv": "^16.0.1",
+  - Used to store and use environment variables effectively and safely
+- "express": "^4.18.1",
+  - Application framework built on Node.js used to create this API.
+- "jsonwebtoken": "^8.5.1",
+  - Middleware parser for JSON - enables the server to send and receive JSON data
+- "mongoose": "^6.4.3",
+  - Object modeling tool that is used to connect with MongoDB, and to query and modify the database
+- "mongodb-memory-server": "^8.7.2"
+  - A MongoDB server used in testing to simulate a database connection
+- "mocha": "^10.0.0"
+  - A testing framework that runs on node 
+- "chai": "^4.3.6",
+  - An assertion library for node used for testing
+- "chai-http": "^4.3.0",
+  - An extension of chai used to test HTTP apis
 
 
 ---
