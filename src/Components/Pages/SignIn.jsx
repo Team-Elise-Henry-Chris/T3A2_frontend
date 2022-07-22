@@ -8,21 +8,26 @@ import jwt_decode from 'jwt-decode'
 const LOGIN_URL = '/api/v1/user'
 
 const SignIn = () => {
+    // Use auth context for setting after successful sign in
     const { setAuth } = useContext(AuthContext)
-    const userRef = useRef()
+    const emailRef = useRef()
     const nav = useNavigate()
 
+    // Sign in form state
     const [signInInfo, setSignInInfo] = useState({
         email: '',
         password: '',
     })
 
+    // State for showing errors
     const [showError, setShowError] = useState(false)
 
+    // Handles the form updating
     const handleChange = (event) => {
         setSignInInfo({ ...signInInfo, [event.target.name]: event.target.value })
     }
 
+    // Handles submitting the form
     const handleSubmit = async (event) => {
         event.preventDefault()
 
@@ -41,8 +46,9 @@ const SignIn = () => {
 
     }
 
+    // Sets the focus to the email field on load
     useEffect(() => {
-        userRef.current.focus()
+        emailRef.current.focus()
     }, [])
 
     return (
@@ -61,7 +67,7 @@ const SignIn = () => {
                                         <span className="label-text">Email</span>
                                     </label>
                                     <input
-                                        ref={userRef}
+                                        ref={emailRef}
                                         type="text"
                                         placeholder="email"
                                         className="input input-bordered"

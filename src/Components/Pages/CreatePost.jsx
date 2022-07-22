@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 const CreatePost = ({ topics, setPosts, posts }) => {
     const nav = useNavigate()
 
+    // State that holds information about the new post
     const [newPost, setNewPost] = useState({
         title: '',
         link: '',
@@ -12,12 +13,15 @@ const CreatePost = ({ topics, setPosts, posts }) => {
         topic: '',
     })
 
+    // Get id from route
     const { id } = useParams()
 
+    // Handles updating the state for the new post
     const handleChange = (event) => {
         setNewPost({ ...newPost, [event.target.name]: event.target.value })
     }
 
+    // Handles submitting data to backend
     const handleSubmit = async (event) => {
         event.preventDefault()
         const post = newPost
@@ -32,10 +36,11 @@ const CreatePost = ({ topics, setPosts, posts }) => {
             setPosts([...posts, response.data])
             nav(`/topic/${newPost.topic}`)
         } catch (err) {
-            // TODO: Handle errors
+            console.error(err)
         }
     }
 
+    // Handles returning the topic name or a dropdown of topics
     const findTopicName = () => {
         const foundTopic = topics.find((topic) => topic._id == id)
         if (!foundTopic) { // ID not found
@@ -47,6 +52,7 @@ const CreatePost = ({ topics, setPosts, posts }) => {
         )
     }
 
+    // Handles rendering the select input field
     const renderTopicSelect = () => {
         return (
             <select className="select select-bordered w-full max-w-xs"

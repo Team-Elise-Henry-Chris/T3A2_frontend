@@ -5,11 +5,6 @@ const AdminDashboard = ({ topics, setTopics }) => {
     const [showInput, setShowInput] = useState(false)
     const newTopicName = useRef()
 
-
-    // const handleEdit = async () => {
-        // Function ready for logic to edit a topic
-    // }
-
     const handleDelete = async (id) => {
         setTopics(topics.filter((topic) => topic._id !== id))
         await axios.delete(`/api/v1/topic/${id}`)
@@ -26,9 +21,6 @@ const AdminDashboard = ({ topics, setTopics }) => {
 
         setTopics([...topics, response.data])
     }
-
-    
-
 
     return (
         <>
@@ -49,15 +41,6 @@ const AdminDashboard = ({ topics, setTopics }) => {
                             <tr key={index}>
                                 <td>{topic._id}</td>
                                 <td>{topic.topic_name}</td>
-                                {/* No edit route - edit button ready to go when implemented */}
-                                {/* <td>
-                                    <button className="btn btn-warning  hover:bg-primary-focus">
-                                        Edit
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 20 24" stroke="currentColor" strokeWidth="2">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                        </svg>
-                                    </button>
-                                </td> */}
                                 <td>
                                     <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-wide lg:btn-sm btn-error hover:bg-red-600" onClick={() => handleDelete(topic._id)}>
                                         Delete

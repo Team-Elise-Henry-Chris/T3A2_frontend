@@ -2,6 +2,7 @@ import { useState } from "react"
 import Post from './Post'
 
 const PostList = ({ posts, setPosts, getPosts }) => {
+    // State for if the filter is toggled
     const [isToggled, setIsToggled] = useState(false)
 
     return (
