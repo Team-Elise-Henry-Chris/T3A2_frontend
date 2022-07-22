@@ -25,7 +25,7 @@ const Post = ({ post, posts, setPosts, getPosts }) => {
     // Post Date Created
     const postDateCreated = () => moment(post.date_created).format('[Created,] Do MMMM YYYY [(]h:mm a[)]')
 
-// DELETE POSTS 
+    // DELETE POSTS 
     const deletePostHandler = async () => {
         try {
             await axios.delete(`/api/v1/post/${post._id}`)
@@ -36,8 +36,6 @@ const Post = ({ post, posts, setPosts, getPosts }) => {
     }
 
     return (
-        
-        
         <div className="flex flex-row-reverse border-1 bg-sky-600 shadow-xl image-full m-4 rounded-lg">
             <div className="flex-row justify-end z-10">
             
@@ -206,10 +204,6 @@ const Post = ({ post, posts, setPosts, getPosts }) => {
                             </ul>
                         </div>
                         }</div>
-
-                        
-
-
 
                         <div className="flex flex-row justify-end items-end">
                             {/* Number of ratings */}

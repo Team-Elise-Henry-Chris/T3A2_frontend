@@ -1,12 +1,11 @@
 import { useEffect, useState, useContext } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import AuthContext from './AuthProvider'
-import Alert from './Alert'
 
 const Nav = ({ children }) => {
+    // Setting state / location / authcontext
     const [createPostLink, setCreatePostLink] = useState('/create-post')
     const location = useLocation()
-
     const { auth, setAuth } = useContext(AuthContext)
 
     // Listen for location to change
@@ -24,11 +23,13 @@ const Nav = ({ children }) => {
         }
     }, [location])
 
+    // Handles logging out
     const handleLogout = () => {
         window.localStorage.clear()
         setAuth(undefined)
     }
 
+    // Handles rendering the nav links (e.g. if admin or normal user)
     const getNavLinks = () => {
         return (
             <>

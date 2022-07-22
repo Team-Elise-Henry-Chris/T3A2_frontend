@@ -1,5 +1,4 @@
 import PostList from '../PostList'
-import React from 'react'
 
 const IndividualTopic = ({ posts, setPosts, getPosts }) => {
     return (

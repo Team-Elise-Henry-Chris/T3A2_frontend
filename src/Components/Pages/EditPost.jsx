@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import axios from '../../api/axios'
 
 const EditPost = ({ post, posts, setPosts }) => {
+    // State for post
     const [editPostTitle, setEditPostTitle] = useState(`${post.title}`)
     const [editPostResourceType, setEditPostResourceType] = useState(`${post.resource_type}`)
     const [editPostLink, setEditPostLink] = useState(`${post.link}`)
 
+    // Handles submitting the edited post to the backend
     const handleSubmit = async (e) => {
         e.preventDefault()
         const editPostData = {title: editPostTitle, resource_type: editPostResourceType, link: editPostLink}

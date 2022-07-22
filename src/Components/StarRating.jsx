@@ -4,9 +4,11 @@ import './App.css'
 import axios from './../api/axios'
 
 const StarRating = ({ post, getPosts }) => {
+    // State for hover/ratings
     const [rating, setRating] = useState(null)
     const [hover, setHover] = useState(null)
 
+    // Handles creating the rating
     const createStarHandler = async () => {
         const ratingDetails = { rating: rating, postId: post._id }
 

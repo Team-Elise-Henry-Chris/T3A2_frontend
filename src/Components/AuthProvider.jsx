@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from 'react'
 
 const AuthContext = createContext({})
 
+// Auth provider is used for handling storing the signed in user's information
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState()
 

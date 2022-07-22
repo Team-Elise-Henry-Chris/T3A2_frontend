@@ -12,11 +12,12 @@ import AdminDashboard from './Pages/AdminDashboard'
 
 
 const App = () => {
+    // Auth context and state
     const { auth } = useContext(AuthContext)
-
     const [topics, setTopics] = useState([])
     const [posts, setPosts] = useState([])
 
+    // On load, get all the topics
     useEffect(() => {
         const getTopics = async () => {
             const response = await axios.get('/api/v1/topic')
@@ -26,6 +27,7 @@ const App = () => {
         getTopics()
     },[])
 
+    // Function that gets all the posts
     const getPosts = async () => {
         const response = await axios.get('/api/v1/post')
         setPosts(response.data)
@@ -36,7 +38,7 @@ const App = () => {
         (async () => {
             await getPosts()
         })()
-    },[])
+    }, [])
 
     return (
         <div data-theme="bumblebee" className="min-h-screen flex flex-col">
@@ -59,7 +61,6 @@ const App = () => {
             </BrowserRouter>           
         </div>
     )
-
 }
 
 export default App

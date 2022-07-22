@@ -6,12 +6,14 @@ import Alert from '../Alert'
 const CREATE_ACCOUNT_URL = '/api/v1/user'
 
 const CreateAccount = () => {
-    const userRef = useRef()
+    // Refs to the form
+    const firstNameRef = useRef()
     const pwdRef = useRef()
     const confirmPwdRef = useRef()
+
     const nav = useNavigate()
 
-
+    // State for the form
     const [accountInfo, setAccountInfo] = useState({
         firstName: '',
         lastName: '',
@@ -21,10 +23,12 @@ const CreateAccount = () => {
         confirmPassword: '',
     })
 
+    // State for error messages
     const [errorMsg, setErrorMsg] = useState('')
     const [pwdErrorMsg, setPwdErrorMsg] = useState([])
     const [showPwdError, setShowPwdError] = useState(false)
 
+    // Handles updating the form / showing password errors
     const handleChange = (event) => {
         if (event.target.name === 'password' || event.target.name === 'confirmPassword') {
             setShowPwdError(true)
@@ -33,6 +37,7 @@ const CreateAccount = () => {
         setAccountInfo({ ...accountInfo, [event.target.name]: event.target.value })
     }
 
+    // Handles submitting data to backend
     const handleSubmit = async (event) => {
         event.preventDefault()
         setErrorMsg('')
@@ -40,7 +45,6 @@ const CreateAccount = () => {
         try {
             await axios.post(CREATE_ACCOUNT_URL, accountInfo)
             setAccountInfo({ firstName: '', lastName: '', email: '', username: '', password: '', confirmPassword: '' })
-
             nav('/sign-in')
         } catch (err) {
 
@@ -53,6 +57,7 @@ const CreateAccount = () => {
         }
     }
 
+    // Handles password complexity requirement
     useEffect(() => {
         if (!showPwdError) {
             return
@@ -70,12 +75,12 @@ const CreateAccount = () => {
 
     }, [pwdRef.current?.value, confirmPwdRef.current?.value])
 
+    // Set the focus to the first name in the form
     useEffect(() => {
-        userRef.current.focus()
+        firstNameRef.current.focus()
     }, [])
 
     return (
-        
         <div className="relative flex flex-grow p-3">
             <form onSubmit={handleSubmit} className="hero bg-base-200 border rounded">
                 <div className="hero-content flex-col w-full">
@@ -91,7 +96,7 @@ const CreateAccount = () => {
                                     <span className="label-text">First Name</span>
                                 </label>
                                 <input
-                                    ref={userRef}
+                                    ref={firstNameRef}
                                     type="text"
                                     placeholder="John"
                                     className="input input-bordered"

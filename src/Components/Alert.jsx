@@ -1,6 +1,7 @@
-// Status types: undefined, info, success, warning, error
+// Reusable alert component
 const Alert = ({ status, message }) => {
 
+    // Status types: undefined, info, success, warning, error
     const createAlert = () => {
         let className = 'alert shadow-lg'
 
