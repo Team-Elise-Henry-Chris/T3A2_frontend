@@ -1,33 +1,30 @@
 import React, { useState } from 'react'
-import jwt_decode from 'jwt-decode'
 import axios from '../../api/axios'
 
-
-
-const EditPost = ({ post }) => {
-
-    var token = JSON.parse(window.localStorage.getItem('data'))?.accessToken
-    var decoded = jwt_decode(token)
-
+const EditPost = ({ post, posts, setPosts }) => {
     const [editPostTitle, setEditPostTitle] = useState(`${post.title}`)
     const [editPostResourceType, setEditPostResourceType] = useState(`${post.resource_type}`)
     const [editPostLink, setEditPostLink] = useState(`${post.link}`)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         const editPostData = {title: editPostTitle, resource_type: editPostResourceType, link: editPostLink}
 
-        const headers = { 
-            'Authorization': `Bearer ${token}`
+        try {
+            await axios.patch(`/api/v1/post/${post._id}`, editPostData)
+
+            setPosts(posts.map((p) => {
+                if (p._id === post._id) {
+                    p.title = editPostData.title
+                    p.resource_type = editPostData.resource_type
+                    p.link = editPostData.link
+                }
+
+                return p
+            }))
+        } catch (err) {
+            console.error(err)
         }
-
-        axios.patch(`/api/v1/post/${post._id}`, editPostData)
-        .then(response => {
-            (console.log(response.data))
-            (window.location.reload(false))
-        })
-
-
     }
 
     return (

@@ -3,7 +3,7 @@ import { FaStar } from 'react-icons/fa'
 import './App.css'
 import axios from './../api/axios'
 
-const StarRating = ({ post }) => {
+const StarRating = ({ post, getPosts }) => {
     const [rating, setRating] = useState(null)
     const [hover, setHover] = useState(null)
 
@@ -12,7 +12,7 @@ const StarRating = ({ post }) => {
 
         try {
             await axios.post('/api/v1/rating/', ratingDetails)
-            window.location.reload(false)
+            await getPosts() // Fetch all the posts which will update the ratings
         } catch (err) {
             console.error(err)
         }
