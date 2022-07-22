@@ -94,7 +94,7 @@ const Post = ({ post, posts, setPosts, getPosts }) => {
                     </div>
 
                     {/* Resource Link */}
-                    <button className="btn btn-primary order-3 sm:hidden"><a href={postLink()}>{postResourceType()} Link</a></button>
+                    <button className="btn btn-primary order-3 sm:hidden"><a href={postLink()} target="_blank">{postResourceType()} Link</a></button>
 
                     {/* Date Created */}
                     <h4 className="order-4 sm:hidden">{postDateCreated()}</h4>
@@ -180,7 +180,7 @@ const Post = ({ post, posts, setPosts, getPosts }) => {
                         {/* Post Title */}
                         <h2 className="card-title">{postTitle()}</h2>
                         {/* Resource Link */}
-                        <button className="btn btn-primary w-1/4"><a href={postLink()}>{postResourceType()} Link</a></button>
+                        <button className="btn btn-primary w-1/4"><a href={postLink()} target="_blank">{postResourceType()} Link</a></button>
                     </div>
 
 
