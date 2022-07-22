@@ -39,7 +39,7 @@ const StarRating = ({ post }) => {
             const ratingValue = i + 1
 
             return (
-            <label>
+                <label key={i}>
                 <input 
                     id="ratingbutton"
                     type="radio" 

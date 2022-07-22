@@ -57,23 +57,23 @@ const Post = ({ post }) => {
             
             {/* Delete */}
             {decoded.id === null ? null : decoded.id.includes(post.user) ? 
-            <label tabindex="0" class="btn m-1 bg-sky-600 h-10 w-19"><img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" onClick={deletePostHandler}></img></label> : 
-            decoded.role === "admin" ? <label tabindex="0" class="btn m-1 bg-sky-600 h-10 w-19"><img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" onClick={deletePostHandler}></img></label> : null}
+            <label tabIndex="0" className="btn m-1 bg-sky-600 h-10 w-19"><img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" onClick={deletePostHandler}></img></label> : 
+            decoded.role === "admin" ? <label tabIndex="0" className="btn m-1 bg-sky-600 h-10 w-19"><img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" onClick={deletePostHandler}></img></label> : null}
    
             
         
             {/* Edit  */}
             {decoded.id === null ? null : decoded.id.includes(post.user) ? 
             <div className="dropdown dropdown-end sm:flex justify-end">
-            <label tabindex="0" class="btn m-1 bg-sky-600 h-10 w-12.1"><img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png" onClick=''></img></label>
-            <ul tabindex="0" class="dropdown-content menu p-2 shadow base-content rounded-box w-52">
+            <label tabIndex="0" className="btn m-1 bg-sky-600 h-10 w-12.1"><img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png" onClick=''></img></label>
+            <ul tabIndex="0" className="dropdown-content menu p-2 shadow base-content rounded-box w-52">
             <li><a><EditPost post={post}/></a></li>
             </ul>
             </div> : 
             decoded.role === "admin" ? 
             <div className="dropdown dropdown-end sm:flex justify-end">
-            <label tabindex="0" class="btn m-1 bg-sky-600 h-10 w-12.1"><img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png" onClick=''></img></label>
-            <ul tabindex="0" class="dropdown-content menu p-2 shadow base-content rounded-box w-52">
+            <label tabIndex="0" className="btn m-1 bg-sky-600 h-10 w-12.1"><img id="edit_delete" className="object-scale-down h-10 w-10" src="https://cdn-icons-png.flaticon.com/512/2919/2919592.png" onClick=''></img></label>
+            <ul tabIndex="0" className="dropdown-content menu p-2 shadow base-content rounded-box w-52">
             <li><a><EditPost post={post}/></a></li>
             </ul>
             </div> : null}
@@ -173,15 +173,15 @@ const Post = ({ post }) => {
                     {/* Star Rating - USER ADDED*/}
                         <div>{decoded.role === "admin" ? 
                         <div className="order-7 sm:hidden dropdown dropdown-end">
-                            <label tabindex="0" class="btn m-1 bg-blue-700">Add Star Rating</label>
-                                <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
+                            <label tabIndex="0" className="btn m-1 bg-blue-700">Add Star Rating</label>
+                                <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
                                     <li><a><StarRating post={post}/> </a></li>
                                 </ul>
                         </div>
                          : decoded.id === post.user ? null: 
                         <div className="order-7 sm:hidden dropdown dropdown-end">
-                            <label tabindex="0" class="btn m-1 bg-blue-700">Add Star Rating</label>
-                                <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
+                            <label tabIndex="0" className="btn m-1 bg-blue-700">Add Star Rating</label>
+                                <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
                                     <li><a><StarRating post={post}/> </a></li>
                                 </ul>
                         </div>
@@ -207,15 +207,15 @@ const Post = ({ post }) => {
                         {/* Star Rating - USER ADDED*/}
                         <div>{decoded.role === "admin" ?
                         <div className="dropdown dropdown-end hidden sm:flex justify-end">
-                            <label tabindex="0" class="btn m-1 bg-blue-700">Add Star Rating</label>
-                            <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
+                            <label tabIndex="0" className="btn m-1 bg-blue-700">Add Star Rating</label>
+                            <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
                             <li><a><StarRating post={post} /></a></li>
                             </ul>
                         </div>
                         : decoded.id === post.user ? null:
                         <div className="dropdown dropdown-end hidden sm:flex justify-end">
-                            <label tabindex="0" class="btn m-1 bg-blue-700">Add Star Rating</label>
-                            <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
+                            <label tabIndex="0" className="btn m-1 bg-blue-700">Add Star Rating</label>
+                            <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-accent-content rounded-box w-52">
                             <li><a><StarRating post={post} /></a></li>
                             </ul>
                         </div>
